@@ -1,0 +1,76 @@
+.title KiCad schematic
+
+.func E(x) {exp(x)}
+
+.include "ff_nonfet.cor"
+
+*.include "lod_params.cor"
+
+***************************************************
+*                RO DLC FACTORS                   *
+***************************************************
+.param
++ lv_dlc_rotweak               = 00.00e-9
++ lvhvt_dlc_rotweak            = 00.00e-9
++ lvt_dlc_rotweak              = 00.00e-9
++ hv_dlc_rotweak               =  00.00e-9
++ nshort_dlc_rotweak           =  lv_dlc_rotweak
++ nshortesd_dlc_rotweak        =  lv_dlc_rotweak
++ nlowvt_dlc_rotweak           =  lvt_dlc_rotweak
++ pshort_dlc_rotweak           =  lv_dlc_rotweak
++ plowvt_dlc_rotweak           =  lvt_dlc_rotweak
++ phighvt_dlc_rotweak          =  lvhvt_dlc_rotweak
++ nhvesd_dlc_rotweak           =  hv_dlc_rotweak
++ phvesd_dlc_rotweak           =  hv_dlc_rotweak
++ ntvnative_dlc_rotweak        =  hv_dlc_rotweak
++ nhvnative_dlc_rotweak        =  hv_dlc_rotweak
++ nhv_dlc_rotweak              =  hv_dlc_rotweak
++ phv_dlc_rotweak              =  hv_dlc_rotweak
++ pvhv_dlc_rotweak              =  hv_dlc_rotweak
+*
++ npass_dlc_rotweak            =  lv_dlc_rotweak
++ npassll_dlc_rotweak          =  lv_dlc_rotweak
++ fnpass_dlc_rotweak           =  hv_dlc_rotweak
++ npd_dlc_rotweak              =  lv_dlc_rotweak
++ npdll_dlc_rotweak            =  lv_dlc_rotweak
++ ppu_dlc_rotweak              =  lv_dlc_rotweak
++ ppull_dlc_rotweak            =  lv_dlc_rotweak
+*
++ sonos_e_dlc_rotweak          =  hv_dlc_rotweak
++ sonos_p_dlc_rotweak          =  hv_dlc_rotweak
++ sonos_eeol_dlc_rotweak       =  hv_dlc_rotweak
++ sonos_peol_dlc_rotweak       =  hv_dlc_rotweak
+
+
+.include nlowvt_mm.cor
+.include nlowvt_ff.cor
+.include nlowvt.pm3
+
+.include pshort_mm.cor
+.include pshort_ff.cor
+.include pshort.pm3
+
+.option scale=0.005U
+.include TOP.spice
+
+*.subckt TOP S SB VSS VDD IN OUT OUTD
+
+X1 ctrl ctrlb gnd pwr in out outd tp1 tp2 TOP
+Vpos pwr gnd DC 1.8V 
+Vctrl ctrl gnd DC 1.8V 
+Vctrlb ctrlb gnd DC 0V 
+Vsig in2 gnd DC 0V PULSE(0 1.8V 0 100p 100p 1n 2n) 
+R10001 in in2 1k
+
+
+.option rshunt = 1.0e12
+.op
+.control
+TRAN 10p 5N
+alter @Vctrl[dc] = 0V
+alter @Vctrlb[dc] = 1.8V
+TRAN 10p 5N
+plot tran1.v(in) tran1.v(outd) tran2.v(in) tran2.v(outd)
+.endc
+
+.end
