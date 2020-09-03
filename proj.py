@@ -91,6 +91,10 @@ dcell.trans = db.DTrans.new(0,False,-.48*2,0) * dcell.trans
 top.insert(dcell)
 
 dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.M0)
+dcell.trans = db.DTrans.new(0,False,-.48*2,0) * dcell.trans
+top.insert(dcell)
+
+dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.M0)
 dcell.trans = db.DTrans.new(0,False,-.48*2,6.745 - .085) * dcell.trans
 top.insert(dcell)
 
@@ -99,132 +103,180 @@ top.insert(dcell)
 #dcell.trans = db.DTrans.new(0,False,0.48*7,0) * dcell.trans
 #top.insert(dcell)
 
-pcap = layout.create_cell("pcap")
+unit_delay = layout.create_cell("unit_delay")
+emux = layout.create_cell("emux")
 
 dcell = db.DCellInstArray.new(pfet_small.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,.48,1.845+.15) * dcell.trans
-pcap.insert(dcell)
+emux.insert(dcell)
 
 dcell = db.DCellInstArray.new(nfet_small.cell_index(),db.DTrans.M0)
 dcell.trans = db.DTrans.new(0,False,0.48,0.960) * dcell.trans
-pcap.insert(dcell)
+emux.insert(dcell)
 
 
 dcell = db.DCellInstArray.new(scs8hs_fill_4_none.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,-0.48,0) * dcell.trans
-pcap.insert(dcell)
+emux.insert(dcell)
 
-make_rect(pcap,[0.255,0.370],[0.17,2.6],"li")
-make_rect(pcap,[0.255+.430,0.370],[0.17,2.6],"li")
-make_rect(pcap,[0.255+.430*2,0.370],[0.17,3.6],"li")
-make_rect(pcap,[0-.35,2.6],[0.17,2.4],"li")
-#make_rect(pcap,[0-.13,3.6],[0.17,1],"li")
-make_rect(pcap,[0-.3,2.6],[0.56,.3],"li")
+make_rect(emux,[0.255,0.370],[0.17,2.6],"li")
+make_rect(emux,[0.255+.430,0.370],[0.17,2.6],"li")
+make_rect(emux,[0.255+.430*2,0.370],[0.17,2.6],"li")
+make_rect(unit_delay,[0.255+.430*2,0.370+2.6],[0.17,1],"li")
+make_rect(unit_delay,[0-.35,2.6],[0.17,2.4],"li")
+make_rect(unit_delay,[0-.3,2.6],[0.56,.3],"li")
 
-make_rect(pcap,[-.54+.095+1.355,1.240-.115-.08],[1.17-.095+.03-.3,0.15],"poly")
-make_rect(pcap,[-.54+.095-.03+.34,1.240+.325+.2],[1.17-.095+.03-.34,0.15],"poly")
+make_rect(emux,[-.54+.095+1.355,1.240-.115-.08],[1.17-.095+.03-.3,0.15],"poly")
+make_rect(emux,[-.54+.095-.03+.34,1.240+.325+.2],[1.17-.095+.03-.34,0.15],"poly")
 
-make_rect(pcap,[-.54+.095+.925,1.240-.115+.28],[0.580,0.15],"poly")
-make_rect(pcap,[-.54+.095+1.355,1.240-.115+.3],[0.15,0.48],"poly")
-make_rect(pcap,[-.54+.095+.925,1.240-.115+.28],[0.15,-0.3],"poly")
-make_rect(pcap,[-.54+.095+.27,1.240-.115-.08],[1.17-.095-.27,0.15],"poly")
+make_rect(emux,[-.54+.095+.925,1.240-.115+.28],[0.580,0.15],"poly")
+make_rect(emux,[-.54+.095+1.355,1.240-.115+.3],[0.15,0.48],"poly")
+make_rect(emux,[-.54+.095+.925,1.240-.115+.28],[0.15,-0.3],"poly")
+make_rect(emux,[-.54+.095+.27,1.240-.115-.08],[1.17-.095-.27,0.15],"poly")
 
-make_rect(pcap,[-.54+.095-.03+.29,1.240+.275+.25],[0.33,0.35],"poly")
-make_rect(pcap,[-.54+.095+1.73+.1,1.195],[0.34,0.90],"poly")
-make_rect(pcap,[-.54+.095-.03+.29,1.195],[0.33,0.35],"poly")
+make_rect(emux,[-.54+.095-.03+.29,1.240+.275+.25],[0.33,0.35],"poly")
+make_rect(emux,[-.54+.095+1.73+.1,1.195],[0.34,0.90],"poly")
+make_rect(emux,[-.54+.095-.03+.29,1.195],[0.33,0.35],"poly")
 
-make_rect(pcap,[-.54+.095-.03+.30-.1,1.240+.275+.25-.82],[0.33+.2,0.35+.92],"npc")
+make_rect(emux,[-.54+.095-.03+.30-.1,1.240+.275+.25-.82],[0.33+.2,0.35+.92],"npc")
 
-make_rect(pcap,[-.54+.095+1.73-.1+0.1,1.195-.25],[0.7+.2-.37,0.25+.35+.65],"npc")
+make_rect(emux,[-.54+.095+1.73-.1+0.1,1.195-.25],[0.7+.2-.37,0.25+.35+.65],"npc")
 
-make_rect(pcap,[-.54+.095+.1+.17,1.240+.275+.25],[.25,.33],"li")
-make_rect(pcap,[-.54+.095+.1+.25-.035,1.240+.275+.33],[.17,.17],"li.con")
-make_rect(pcap,[-.54+.095+.1+.17,1.240+.275+.25],[.25,.33],"m1")
-make_rect(pcap,[-.54+.095+.1+.25-.035,1.240+.275+.33],[.17,.17],"m1.con")
+make_rect(emux,[-.54+.095+.1+.17,1.240+.275+.25],[.25,.33],"li")
+make_rect(emux,[-.54+.095+.1+.25-.035,1.240+.275+.33],[.17,.17],"li.con")
+make_rect(emux,[-.54+.095+.1+.17,1.240+.275+.25],[.25,.33],"m1")
+make_rect(emux,[-.54+.095+.1+.25-.035,1.240+.275+.33],[.17,.17],"m1.con")
 
-make_rect(pcap,[-.54+.095+.1+.17,1.195],[.25,.33],"li")
-make_rect(pcap,[-.54+.095+.1+.25-.035,1.195+.08],[.17,.17],"li.con")
-make_rect(pcap,[-.54+.095+.1+.17,1.195-.13],[.25,.33+.13],"m1")
-make_rect(pcap,[-.54+.095+.1+.25-.035,1.195+.08],[.17,.17],"m1.con")
+make_rect(emux,[-.54+.095+.1+.17,1.195],[.25,.33],"li")
+make_rect(emux,[-.54+.095+.1+.25-.035,1.195+.08],[.17,.17],"li.con")
+make_rect(emux,[-.54+.095+.1+.17,1.195-.13],[.25,.33+.13],"m1")
+make_rect(emux,[-.54+.095+.1+.25-.035,1.195+.08],[.17,.17],"m1.con")
 
-make_rect(pcap,[-.54+.095+1.73+.1+.08,1.240+.275+.25],[.25,.33],"li")
-make_rect(pcap,[-.54+.095+1.73+.1+.12,1.240+.275+.33],[.17,.17],"li.con")
-make_rect(pcap,[-.54+.095+1.73+.1+.08,1.240+.275+.25],[.25,.33],"m1")
-make_rect(pcap,[-.54+.095+1.73+.1+.12,1.240+.275+.33],[.17,.17],"m1.con")
+make_rect(emux,[-.54+.095+1.73+.1+.08,1.240+.275+.25],[.25,.33],"li")
+make_rect(emux,[-.54+.095+1.73+.1+.12,1.240+.275+.33],[.17,.17],"li.con")
+make_rect(emux,[-.54+.095+1.73+.1+.08,1.240+.275+.25],[.25,.33],"m1")
+make_rect(emux,[-.54+.095+1.73+.1+.12,1.240+.275+.33],[.17,.17],"m1.con")
 
-make_rect(pcap,[-.48,1.8],[.48*8,.20],"m1")
-make_rect(pcap,[-.48,.96],[.48*8,.20],"m1")
+make_rect(emux,[-.48,1.8],[.48*8,.20],"m1")
+make_rect(emux,[-.48,.96],[.48*8,.20],"m1")
 
-make_rect(pcap,[0.255+.430-.06,1.390-.06],[0.29,0.29],"li")
-make_rect(pcap,[0.255+.430-.06,1.390-.06],[0.29,0.29],"m1")
-make_rect(pcap,[0.255+.430,1.390],[0.17,0.17],"m1.con")
-make_rect(pcap,[0.255+.430,1.390],[1.7,0.17],"m1")
-make_rect(pcap,[0.255+.430-.06+1.7,1.390-.06],[0.29,0.29],"m1")
-make_rect(pcap,[0.255+.430+1.7,1.390],[0.17,0.17],"m1.con")
+make_rect(emux,[0.255+.430-.06,1.390-.06],[0.29,0.29],"li")
+make_rect(emux,[0.255+.430-.06,1.390-.06],[0.29,0.29],"m1")
+make_rect(emux,[0.255+.430,1.390],[0.17,0.17],"m1.con")
+make_rect(emux,[0.255+.430,1.390],[1.7,0.17],"m1")
+make_rect(emux,[0.255+.430-.06+1.7,1.390-.06],[0.29,0.29],"m1")
+make_rect(emux,[0.255+.430+1.7,1.390],[0.17,0.17],"m1.con")
 
-make_rect(pcap,[.48*3-.1,5-.12],[.25,.33],"li")
+#make_rect(emux,[-.54+.095+1.73+.17,1.195-.15],[0.7-.17,0.40],"li")
 
-#make_rect(pcap,[-.54+.095+1.73+.17,1.195-.15],[0.7-.17,0.40],"li")
+#make_rect(emux,[-.54+.095+.02,1.240+.275+.12],[0.17,0.17],"li.con")
+#make_rect(emux,[-.54+.095+.36,1.240+.275+.12],[0.17,0.17],"li.con")
 
-#make_rect(pcap,[-.54+.095+.02,1.240+.275+.12],[0.17,0.17],"li.con")
-#make_rect(pcap,[-.54+.095+.36,1.240+.275+.12],[0.17,0.17],"li.con")
+#make_rect(emux,[-.54+.095+1.73-.1+.27,1.195-.25+.22],[0.17,0.17],"li.con")
+#make_rect(emux,[-.54+.095+1.73-.1+.27+.34,1.195-.25+.22],[0.17,0.17],"li.con")
 
-#make_rect(pcap,[-.54+.095+1.73-.1+.27,1.195-.25+.22],[0.17,0.17],"li.con")
-#make_rect(pcap,[-.54+.095+1.73-.1+.27+.34,1.195-.25+.22],[0.17,0.17],"li.con")
+#make_rect(emux,[-.54+.095+.02,1.240+.275+.12],[0.17,0.17],"m1.con")
+#make_rect(emux,[-.54+.095+.36,1.240+.275+.12],[0.17,0.17],"m1.con")
 
-#make_rect(pcap,[-.54+.095+.02,1.240+.275+.12],[0.17,0.17],"m1.con")
-#make_rect(pcap,[-.54+.095+.36,1.240+.275+.12],[0.17,0.17],"m1.con")
+#make_rect(emux,[-.54+.095+1.73-.1+.27,1.195-.25+.22],[0.17,0.17],"m1.con")
+#make_rect(emux,[-.54+.095+1.73-.1+.27+.34,1.195-.25+.22],[0.17,0.17],"m1.con")
 
-#make_rect(pcap,[-.54+.095+1.73-.1+.27,1.195-.25+.22],[0.17,0.17],"m1.con")
-#make_rect(pcap,[-.54+.095+1.73-.1+.27+.34,1.195-.25+.22],[0.17,0.17],"m1.con")
-
-#make_rect(pcap,[-.54+.095-.05,1.240+.275],[0.7-.17+.1,0.40],"m1")
-#make_rect(pcap,[-.54+.095+1.73+.17-.05,1.195-.15],[0.7-.17+.1,0.40],"m1")
-#make_rect(pcap,[-.54+.095-.05,1.240+.275-.1],[2.53,0.17],"m1")
+#make_rect(emux,[-.54+.095-.05,1.240+.275],[0.7-.17+.1,0.40],"m1")
+#make_rect(emux,[-.54+.095+1.73+.17-.05,1.195-.15],[0.7-.17+.1,0.40],"m1")
+#make_rect(emux,[-.54+.095-.05,1.240+.275-.1],[2.53,0.17],"m1")
 
 dcell = db.DCellInstArray.new(scs8hs_buf_1.cell_index(),db.DTrans.M0)
 dcell.trans = db.DTrans.new(0,False,-0.48,6.745 - .085) * dcell.trans
-pcap.insert(dcell)
+unit_delay.insert(dcell)
+
+dcell = db.DCellInstArray.new(scs8hs_buf_1.cell_index(),db.DTrans.M0)
+dcell.trans = db.DTrans.new(0,False,-0.48,6.745 - .085) * dcell.trans
+unit_delay.insert(dcell)
 
 dcell = db.DCellInstArray.new(scs8hs_buf_1.cell_index(),db.DTrans.M0)
 dcell.trans = db.DTrans.new(0,False,0.48*3,6.745 - .085) * dcell.trans
-pcap.insert(dcell)
+unit_delay.insert(dcell)
 
 dcell = db.DCellInstArray.new(scs8hs_inv_1_mod.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,0.48*4,0) * dcell.trans
-pcap.insert(dcell)
+emux.insert(dcell)
 
 dcell = db.DCellInstArray.new(scs8hs_fill_1.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,0.48*3,0) * dcell.trans
-pcap.insert(dcell)
+emux.insert(dcell)
+
+dcell = db.DCellInstArray.new(emux.cell_index(),db.DTrans.R0)
+dcell.trans = db.DTrans.new(0,False,0,0) * dcell.trans
+unit_delay.insert(dcell)
 
 
-
-def make_pins(cell):
-    make_pin(cell,[-.325,4.91],"li","IN")
-    make_pin(cell,[3.035,4.54],"li","OUT")
+def make_pins(cell,x=True):
     make_pin(cell,[3.035,1.21],"li","OUTD")
 
     make_pin(cell,[-0.13,1.845],"m1","S")
     make_pin(cell,[-0.13,1.275],"m1","SB")
 
     make_pin(cell,[0.155,-.085],"m1","VSS")
-    make_pin(cell,[0.155,6.575],"m1","VSS")
     make_pin(cell,[0.155,3.245],"m1","VDD")
 
-    make_pin(cell,[0.07,3.76],"li","TP1")
-    make_pin(cell,[1.07,3.76],"li","TP2")
+    if x:
+       make_pin(cell,[-.325,4.91],"li","IN")
+       make_pin(cell,[3.035,4.54],"li","OUT")
+       make_pin(cell,[0.155,6.575],"m1","VSS")
+       make_pin(cell,[0.07,3.76],"li","TP1")
+       make_pin(cell,[1.07,3.76],"li","TP2")
 
 
-make_pins(pcap)
+make_pins(unit_delay)
+make_pins(top)
+make_pins(emux,False)
 
 for i in range(8):
-   dcell = db.DCellInstArray.new(pcap.cell_index(),db.DTrans.R0)
+   make_rect(top,[i*.48*4 + .48*3-.1,5-.12],[.25,.33],"li")
+
+for i in range(4):
+   dcell = db.DCellInstArray.new(unit_delay.cell_index(),db.DTrans.R0)
    dcell.trans = db.DTrans.new(0,False,8*i*.48,0) * dcell.trans
    top.insert(dcell)
 
-make_pins(top)
+   dcell = db.DCellInstArray.new(emux.cell_index(),db.DTrans.M0)
+   dcell.trans = db.DTrans.new(0,False,i*8*.48,0) * dcell.trans
+   top.insert(dcell)
 
+   if i % 2 == 0:
+      make_rect(top,[i*.48*8 + .48*7-.2,.5],[.49,.17],"li")
+      make_rect(top,[i*.48*8 + .48*7+.3-.09,.5+.17],[.17,-1.2],"li")
+      make_rect(top,[i*.48*8 + .48*7+.3-.09,.5+.17-1.2-.17],[.6,.17],"li")
+
+   else:
+      make_rect(top,[i*.48*8 + 2.98500-.08, .43-.08+.08], [.33,.33],"li")
+      make_rect(top,[i*.48*8 + 2.98500-.08, .43-.08+.08], [.33,.33],"m1")
+      make_rect(top,[i*.48*8 + 2.98500, .43+.08], [.17,.17],"m1.con")
+      make_rect(top,[i*.48*8 + 2.98500-1.37, .43+.08], [.17,.17],"m1.con")
+      make_rect(top,[i*.48*8 + 2.98500-1.37-.08, .43-.08+.08], [.33,.33],"li")
+      make_rect(top,[i*.48*8 + 2.98500-1.37-.08, .43-.08+.08], [.33,.33],"m1")
+      make_rect(top,[i*.48*8 + 2.98500-1.37, .43+.08], [1.37+.17,.17],"m1")
+      make_rect(top,[i*.48*8 + 2.98500-1.37,.5+.17],[.17,-1.2],"li")
+      make_rect(top,[i*.48*8 + 2.98500-1.37+.17,.5+.17-1.2-.17],[-.6,.17],"li")
+
+
+make_pin(top,[-0.13,-1.445],"m1","S2B")
+make_pin(top,[-0.13,-2.015],"m1","S2")
+make_pin(top,[0.155,-3.415],"m1","VDD")
+make_pin(top,[6.875,-1.38],"li","OUTDD")
+
+
+dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.R0)
+dcell.trans = db.DTrans.new(0,False,.48*31,0) * dcell.trans
+top.insert(dcell)
+
+dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.M0)
+dcell.trans = db.DTrans.new(0,False,.48*31,6.745 - .085) * dcell.trans
+top.insert(dcell)
+
+dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.M0)
+dcell.trans = db.DTrans.new(0,False,.48*31,0) * dcell.trans
+top.insert(dcell)
 
 #m1
 
