@@ -53,14 +53,17 @@
 .option scale=0.005U
 .include TOP.spice
 
-*.subckt TOP S SB VSS VDD S2B S2 OUTD IN OUT TP1 TP2 OUTDD
-       
-X1 ctrl ctrlb gnd pwr ctrl2b ctrl2 outd in out tp1 tp2 outdd TOP
+*.subckt TOP S SB VSS VDD OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B S3 S5B S5 OUTD IN OUT OUTDD OUTDDD
+
+   
+X1 ctrl ctrlb gnd pwr out0 out out2 out3 out4 out5 out6 ctrl2b ctrl2 ctrl2b ctrl2 ctrl3b ctrl3 ctrl2b ctrl2 outd in out outdd outddd TOP
 Vpos pwr gnd DC 1.8V 
 Vctrl ctrl gnd DC 1.8V 
 Vctrlb ctrlb gnd DC 0V 
 Vctrl2 ctrl2 gnd DC 1.8V 
-Vctrl2b ctrl2b gnd DC 0V 
+Vctrl2b ctrl2b gnd DC 0V
+Vctrl3 ctrl3 gnd DC 0V       
+Vctrl3b ctrl3b gnd DC 1.8V  
 Vsig in2 gnd DC 0V PULSE(0 1.8V 0 100p 100p 500p 1n) 
 R10001 in in2 1k
 
@@ -78,8 +81,30 @@ TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
 alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
+alter @Vctrl2[dc] = 1.8V
+alter @Vctrl2b[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl3[dc] = 1.8V
+alter @Vctrl3b[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl[dc] = 0V
+alter @Vctrlb[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl2[dc] = 0V
+alter @Vctrl2b[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl[dc] = 1.8V
+alter @Vctrlb[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl2[dc] = 1.8V
+alter @Vctrl2b[dc] = 0V
+TRAN 10p 5N
+plot v(in) tran2.v(outddd) tran3.v(outddd) tran4.v(outddd) tran5.v(outddd) tran6.v(outddd) tran7.v(outddd) tran8.v(outddd) tran9.v(outddd)
+*plot v(in) tran6.v(outddd) tran7.v(outddd) tran8.v(outddd) tran9.v(outddd)
+*plot v(in) v(out0) v(out) v(out2) v(out3) v(out4) v(out5) v(out6)
 
-plot tran1.v(in) tran1.v(outdd) tran2.v(outdd) tran3.v(outdd) tran4.v(outdd)
+*plot v(in) v(outddd)
+
 .endc
 
 .end
