@@ -53,10 +53,11 @@
 .option scale=0.005U
 .include TOP.spice
 
-*.subckt TOP S SB VSS VDD OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B S3 S5B S5 OUTD IN OUT OUTDD OUTDDD
+*.subckt TOP S SB VSS VDD OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B S3 OUTD IN OUT OUTDD OUTDDD
+*.subckt TOP S SB VSS VDD OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B S3 OUTD IN OUT OUTDD OUTDDD
 
    
-X1 ctrl ctrlb gnd pwr out0 out out2 out3 out4 out5 out6 ctrl2b ctrl2 ctrl2b ctrl2 ctrl3b ctrl3 ctrl2b ctrl2 outd in out outdd outddd TOP
+X1 ctrl ctrlb gnd pwr out0 out out2 out3 out4 out5 out6 gnd gnd ctrl2b ctrl2 ctrl3b ctrl3 outd in out outdd outddd TOP
 Vpos pwr gnd DC 1.8V 
 Vctrl ctrl gnd DC 1.8V 
 Vctrlb ctrlb gnd DC 0V 
