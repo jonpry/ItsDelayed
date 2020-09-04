@@ -29,6 +29,13 @@ def make_pin(cell,org,layer,label):
    region = db.DText.new(label,org[0] + .085,org[1] + .085)
    cell.shapes(layers[layer + ".label"]).insert(region)
 
+def make_bone(cell,org,length,layer):
+   make_rect(cell,[org[0]-.085,org[1]-.085],[.17,.17],layer+".con")
+   make_rect(cell,[org[0]-.085+length,org[1]-.085],[.17,.17],layer+".con")
+   make_rect(cell,[org[0]-.165,org[1]-.165],[.33,.33],layer)
+   make_rect(cell,[org[0]-.165+length,org[1]-.165],[.33,.33],layer)
+   make_rect(cell,[org[0]-.095,org[1]-.085],[length,.17],layer)
+
 
 
 gen = db.TextGenerator()
@@ -167,10 +174,11 @@ make_rect(emux,[-.54+.095+.1+.25-.035,1.240+.275+.33],[.17,.17],"li.con")
 make_rect(emux,[-.54+.095+.1+.17,1.240+.275+.25],[.25,.33],"m1")
 make_rect(emux,[-.54+.095+.1+.25-.035,1.240+.275+.33],[.17,.17],"m1.con")
 
-make_rect(emux,[-.54+.095+.1+.17,1.195],[.25,.33],"li")
+make_rect(emux,[-.54+.095+.1+.17-.03,1.195],[.27,.37],"li")
 make_rect(emux,[-.54+.095+.1+.25-.035,1.195+.08],[.17,.17],"li.con")
-make_rect(emux,[-.54+.095+.1+.17,1.195-.13],[.25,.33+.13],"m1")
-make_rect(emux,[-.54+.095+.1+.25-.035,1.195+.08],[.17,.17],"m1.con")
+make_rect(emux,[-.54+.095+.1+.17-.05,1.195+.13-.07],[.32,.32],"m1")
+make_rect(emux,[-.54+.095+.1+.25-.05,1.195+.13],[.17,.17],"m1.con")
+
 
 make_rect(emux,[-.54+.095+1.73+.1+.08,1.240+.275+.25],[.25,.33],"li")
 make_rect(emux,[-.54+.095+1.73+.1+.12,1.240+.275+.33],[.17,.17],"li.con")
@@ -239,7 +247,7 @@ def make_pins(cell,x=True):
     make_pin(cell,[3.035,1.21],"li","OUTD")
 
     make_pin(cell,[-0.13,1.845],"m1","S")
-    make_pin(cell,[-0.13,1.275],"m1","SB")
+    make_pin(cell,[-0.145,1.325],"m1","SB")
 
     make_pin(cell,[0.155,-.085],"m1","VSS")
     make_pin(cell,[0.155,3.245],"m1","VDD")
@@ -257,8 +265,11 @@ make_pins(quad_delay)
 make_pins(top)
 make_pins(emux,False)
 
-make_rect(quad_delay,[0,1.8],[.48*40,.20],"m1")
-make_rect(quad_delay,[-.175,.96],[.48*40,.20],"m1")
+make_rect(quad_delay,[-.96,1.8],[.48*42,.20],"m1")
+make_rect(quad_delay,[-.96,.96],[.48*42,.20],"m1")
+
+make_rect(quad_delay,[-.96,-1.08],[.48*42,.17],"m1")
+make_rect(quad_delay,[-.96,-2.435],[.48*42,.17],"m1")
 
 
 for i in range(7):
@@ -269,6 +280,25 @@ for i in range(7):
    make_rect(quad_delay,[i*.48*5 + 2.555-.43-.08,1.58-.08+3.4],[.33,.33],"m1")
    make_rect(quad_delay,[i*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57,.17],"m1")
 
+
+make_pin(top,[7*.48*5 + 1.115-.43,1.08+.47+.08+3.4],"m1","OUT" + str(7))
+make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+.08+3.4],[.17,.17],"m1.con")
+make_rect(top,[7*.48*5 + 2.555-.43+.48,1.58+3.4],[.17,.17],"m1.con")
+make_rect(top,[7*.48*5 + 1.115-.43-.08,.47+1.08+3.4],[.33,.33],"m1")
+make_rect(top,[7*.48*5 + 2.555-.43-.08+.48,1.58-.08+3.4],[.33,.33],"m1")
+make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57+.48,.17],"m1")
+
+
+make_bone(top,[7*.48*4-.48*1-.23,-2.77],7.33,"m1")
+make_bone(top,[7*.48*4-.48*1-.23+8.11,-2.77],11.50,"m1")
+
+make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+.08+3.4],[.17,.17],"m1.con")
+make_rect(top,[7*.48*5 + 2.555-.43+.48,1.58+3.4],[.17,.17],"m1.con")
+make_rect(top,[7*.48*5 + 1.115-.43-.08,.47+1.08+3.4],[.33,.33],"m1")
+make_rect(top,[7*.48*5 + 2.555-.43-.08+.48,1.58-.08+3.4],[.33,.33],"m1")
+make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57+.48,.17],"m1")
+
+
 for i in range(4):
    dcell = db.DCellInstArray.new(unit_delay.cell_index(),db.DTrans.R0)
    dcell.trans = db.DTrans.new(0,False,10*i*.48,0) * dcell.trans
@@ -277,6 +307,8 @@ for i in range(4):
    dcell = db.DCellInstArray.new(emux.cell_index(),db.DTrans.M0)
    dcell.trans = db.DTrans.new(0,False,i*10*.48,0) * dcell.trans
    quad_delay.insert(dcell)
+
+   make_rect(quad_delay,[i*.48*10-.54+.095+.1+.12,1.195+.05-.10],[.32,.43],"m1")
 
    if i % 2 == 0:
       make_rect(quad_delay,[i*.48*10 + .48*7-.2,.5],[.49,.17],"li")
@@ -294,6 +326,9 @@ for i in range(4):
       make_rect(quad_delay,[i*.48*10 + 2.98500-1.37,.5+.17],[.17,-1.2],"li")
       make_rect(quad_delay,[i*.48*10 + 2.98500-1.37+.17,.5+.17-1.2-.17],[-.6,.17],"li")
 
+      make_rect(quad_delay,[i*.48*10-.54+.095+.1+.12,-1.5],[.32,.43],"m1")
+      make_rect(quad_delay,[i*.48*10-.54+.095+.1+.12,-2.4],[.32,.6],"m1")
+
 
 make_rect(quad_delay,[1*.48*10 + 2.98500+.08, .43+.08-1.17], [2.1,.17],"m1")
 make_rect(quad_delay,[1*.48*10 + 2.98500, .43-1.17+.08], [.17,.17],"m1.con")
@@ -307,19 +342,22 @@ make_rect(quad_delay,[1*.48*10 + 6-.16+6.75, .43+.08-1.17], [.17,.17],"m1.con")
 make_rect(quad_delay,[1*.48*10 + 6-.085-.08, .43+.08-1.17-.08], [.33,.33],"m1")
 make_rect(quad_delay,[1*.48*10 + 6-.16+6.75-.08, .43+.08-1.17-.08], [.33,.33],"m1")
 
-make_pin([top,quad_delay],[-0.13+0*.48,-1.445],"m1","S4B")
-make_pin([top,quad_delay],[-0.13+0*.48,-2.015],"m1","S4")
+make_pin([quad_delay],[-0.145+0*.48,-1.435],"m1","S4B")
+make_pin([quad_delay],[-0.145+0*.48,-2.015],"m1","S4")
 
-make_pin([top,quad_delay],[-0.13+10*.48,-1.445],"m1","S2B")
-make_pin([top,quad_delay],[-0.13+10*.48,-2.015],"m1","S2")
-make_pin([top,quad_delay],[-0.13+20*.48,-1.445],"m1","S3B")
-make_pin([top,quad_delay],[-0.13+20*.48,-2.015],"m1","S3")
-make_pin([top,quad_delay],[-0.13+30*.48,-1.445],"m1","S2B")
-make_pin([top,quad_delay],[-0.13+30*.48,-2.015],"m1","S2")
+make_pin([top,quad_delay],[-0.145+10*.48,-1.435],"m1","S2B")
+make_pin([top,quad_delay],[-0.145+10*.48,-2.015],"m1","S2")
+make_pin([top,quad_delay],[-0.145+20*.48,-1.435],"m1","S3B")
+make_pin([top,quad_delay],[-0.145+20*.48,-2.015],"m1","S3")
+make_pin([top],[-0.145+61*.48,-1.435],"m1","S3B")
+make_pin([top],[-0.145+61*.48,-2.015],"m1","S3")
+make_pin([top],[-0.145+41*.48,-1.435],"m1","S4B")
+make_pin([top],[-0.145+41*.48,-2.015],"m1","S4")
 
 make_pin([top,quad_delay],[0.155,-3.415],"m1","VDD")
 make_pin([top,quad_delay],[6.875+.48*2,-1.38],"li","OUTDD")
 make_pin([top,quad_delay],[6.875+.48*12,-1.38],"li","OUTDDD")
+make_pin([top,quad_delay],[6.875+.48*2+.48*31,-1.38],"li","OUTDDDD")
 
 
 dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.R0)
@@ -336,6 +374,10 @@ quad_delay.insert(dcell)
 
 
 dcell = db.DCellInstArray.new(quad_delay.cell_index(),db.DTrans.R0)
+top.insert(dcell)
+
+dcell = db.DCellInstArray.new(quad_delay.cell_index(),db.DTrans.R0)
+dcell.trans = db.DTrans.new(0,False,.48*41,0) * dcell.trans
 top.insert(dcell)
 
 #m1

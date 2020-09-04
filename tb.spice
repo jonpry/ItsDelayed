@@ -1,5 +1,7 @@
 .title KiCad schematic
 
+
+
 .func E(x) {exp(x)}
 
 .include "ff_nonfet.cor"
@@ -56,9 +58,10 @@
 *.subckt TOP S SB VSS VDD OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B S3 OUTD IN OUT OUTDD OUTDDD
 *.subckt TOP S SB VSS VDD OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B S3 OUTD IN OUT OUTDD OUTDDD
 *.subckt TOP S SB VSS VDD S4B S4 S2B S2 S3B S3 OUTD IN OUT OUTDD OUTDDD
+*.subckt TOP S SB VSS VDD OUT7 S2B S2 S3B S3 S4B S4 OUTD IN OUT OUTDD OUTDDD OUTDDDD
 
    
-X1 ctrl ctrlb gnd pwr gnd gnd ctrl2b ctrl2 ctrl3b ctrl3 outd in out outdd outddd TOP
+X1 ctrl ctrlb gnd pwr out7 ctrl2b ctrl2 ctrl3b ctrl3 ctrl4b ctrl4 outd in out outdd outddd outdddd TOP
 Vpos pwr gnd DC 1.8V 
 Vctrl ctrl gnd DC 1.8V 
 Vctrlb ctrlb gnd DC 0V 
@@ -66,12 +69,18 @@ Vctrl2 ctrl2 gnd DC 1.8V
 Vctrl2b ctrl2b gnd DC 0V
 Vctrl3 ctrl3 gnd DC 0V       
 Vctrl3b ctrl3b gnd DC 1.8V  
+Vctrl4 ctrl4 gnd DC 0V       
+Vctrl4b ctrl4b gnd DC 1.8V  
 Vsig in2 gnd DC 0V PULSE(0 1.8V 0 100p 100p 500p 1n) 
 R10001 in in2 1k
 
 
-.option rshunt = 1.0e12
-.op
+*.OPTION ABSTOL=1e-15.
+*.OPTION GMIN=1.0e-10.
+*.OPTION ITL1=1e5
+*.OPTION RSHUNT=1e12
+*.OPTION RELTOL=1e-5
+*.op
 .control
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
@@ -101,7 +110,44 @@ TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
 alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
-plot v(in) tran2.v(outddd) tran3.v(outddd) tran4.v(outddd) tran5.v(outddd) tran6.v(outddd) tran7.v(outddd) tran8.v(outddd) tran9.v(outddd)
+alter @Vctrl3[dc] = 0V
+alter @Vctrl3b[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl4[dc] = 1.8V
+alter @Vctrl4b[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl[dc] = 0V
+alter @Vctrlb[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl2[dc] = 0V
+alter @Vctrl2b[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl[dc] = 1.8V
+alter @Vctrlb[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl2[dc] = 1.8V
+alter @Vctrl2b[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl3[dc] = 1.8V
+alter @Vctrl3b[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl[dc] = 0V
+alter @Vctrlb[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl2[dc] = 0V
+alter @Vctrl2b[dc] = 1.8V
+TRAN 10p 5N
+alter @Vctrl[dc] = 1.8V
+alter @Vctrlb[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl2[dc] = 1.8V
+alter @Vctrl2b[dc] = 0V
+TRAN 10p 5N
+alter @Vctrl3[dc] = 0V
+alter @Vctrl3b[dc] = 1.8V
+TRAN 10p 5N
+
+plot v(in) tran2.v(outdddd) tran3.v(outdddd) tran4.v(outdddd) tran5.v(outdddd) tran6.v(outdddd) tran7.v(outdddd) tran8.v(outdddd) tran9.v(outdddd) tran10.v(outdddd) tran11.v(outdddd) tran12.v(outdddd) tran13.v(outdddd) tran14.v(outdddd) tran15.v(outdddd) tran16.v(outdddd) tran17.v(outdddd) tran18.v(outdddd) tran19.v(outdddd) tran20.v(outdddd) tran21.v(outdddd) tran22.v(outdddd)
 *plot v(in) tran6.v(outddd) tran7.v(outddd) tran8.v(outddd) tran9.v(outddd)
 *plot v(in) v(out0) v(out) v(out2) v(out3) v(out4) v(out5) v(out6)
 
