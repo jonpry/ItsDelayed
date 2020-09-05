@@ -8,6 +8,10 @@ layout.dbu = .001
 
 layers = { "m1" : layout.layer(68,20), "m1.con" : layout.layer(67,44),
            "m1.pin" : layout.layer(68,16), "m1.label" : layout.layer(68,5),
+
+           "m2" : layout.layer(69,20), "m2.con" : layout.layer(68,44),
+           "m2.pin" : layout.layer(69,16), "m2.label" : layout.layer(69,5),
+          
            "li" : layout.layer(67,20),
            "li.pin" : layout.layer(67,16), "li.label" : layout.layer(67,5),
            "li.con" : layout.layer(66,44),
@@ -16,6 +20,10 @@ layers = { "m1" : layout.layer(68,20), "m1.con" : layout.layer(67,44),
 
 
 def make_rect(cell,org,sz,layer):
+   if isinstance(layer,list):
+      for l in layer:
+         make_rect(cell,org,sz,l)
+      return
    r = db.DBox.new(org[0],org[1],org[0]+sz[0],org[1]+sz[1]).to_itype(0.001)
    r = cell.shapes(layers[layer]).insert(r)
 
@@ -29,12 +37,29 @@ def make_pin(cell,org,layer,label):
    region = db.DText.new(label,org[0] + .085,org[1] + .085)
    cell.shapes(layers[layer + ".label"]).insert(region)
 
-def make_bone(cell,org,length,layer):
-   make_rect(cell,[org[0]-.085,org[1]-.085],[.17,.17],layer+".con")
-   make_rect(cell,[org[0]-.085+length,org[1]-.085],[.17,.17],layer+".con")
-   make_rect(cell,[org[0]-.165,org[1]-.165],[.33,.33],layer)
-   make_rect(cell,[org[0]-.165+length,org[1]-.165],[.33,.33],layer)
-   make_rect(cell,[org[0]-.095,org[1]-.085],[length,.17],layer)
+def make_bone(cell,org,length,layer,vert=False,ps=.33,ol=None,two_sided=True):
+   if vert:
+      make_rect(cell,[org[0]-.085,org[1]-.085],[.17,.17],layer+".con")
+      if two_sided:
+         make_rect(cell,[org[0]-.085,org[1]-.085+length],[.17,.17],layer+".con")
+         make_rect(cell,[org[0]-.085 - (ps - .17)/2,org[1]-.085-(ps - .17)/2+length],[ps,ps],layer)
+      make_rect(cell,[org[0]-.085 - (ps - .17)/2,org[1]-.085-(ps - .17)/2],[ps,ps],layer)
+      if ol:
+         make_rect(cell,[org[0]-.085 - (ps - .17)/2,org[1]-.085-(ps - .17)/2],[ps,ps],ol)
+         if two_sided:
+            make_rect(cell,[org[0]-.085 - (ps - .17)/2,org[1]-.085-(ps - .17)/2+length],[ps,ps],ol)
+      make_rect(cell,[org[0]-.095,org[1]-.085],[.17,length],layer)
+   else:
+      make_rect(cell,[org[0]-.085,org[1]-.085],[.17,.17],layer+".con")
+      if two_sided:
+         make_rect(cell,[org[0]-.085+length,org[1]-.085],[.17,.17],layer+".con")
+         make_rect(cell,[org[0]-.085-(ps - .17)/2+length,org[1]-.085-(ps - .17)/2],[ps,ps],layer)
+      make_rect(cell,[org[0]-.085-(ps - .17)/2,org[1]-.085-(ps - .17)/2],[ps,ps],layer)
+      make_rect(cell,[org[0]-.095,org[1]-.085],[length,.17],layer)
+      if ol:
+         make_rect(cell,[org[0]-.085 - (ps - .17)/2,org[1]-.085-(ps - .17)/2],[ps,ps],ol)
+         if two_sided:
+            make_rect(cell,[org[0]-.085 - (ps - .17)/2+length,org[1]-.085-(ps - .17)/2],[ps,ps],ol)
 
 
 
@@ -96,8 +121,9 @@ src.read("scs8hs_tapvpwrvgnd_1.gds")
 scs8hs_tap_1.copy_tree(src.top_cell())
 
 top = layout.create_cell("TOP")
+eight_delay = layout.create_cell("eight_delay")
 unit_delay = layout.create_cell("unit_delay")
-quad_delay = layout.create_cell("unit_delay")
+quad_delay = layout.create_cell("quad_delay")
 
 dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,-.48*2,0) * dcell.trans
@@ -262,6 +288,7 @@ def make_pins(cell,x=True):
 
 make_pins(unit_delay)
 make_pins(quad_delay)
+make_pins(eight_delay)
 make_pins(top)
 make_pins(emux,False)
 
@@ -281,23 +308,40 @@ for i in range(7):
    make_rect(quad_delay,[i*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57,.17],"m1")
 
 
-make_pin(top,[7*.48*5 + 1.115-.43,1.08+.47+.08+3.4],"m1","OUT" + str(7))
-make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+.08+3.4],[.17,.17],"m1.con")
-make_rect(top,[7*.48*5 + 2.555-.43+.48,1.58+3.4],[.17,.17],"m1.con")
-make_rect(top,[7*.48*5 + 1.115-.43-.08,.47+1.08+3.4],[.33,.33],"m1")
-make_rect(top,[7*.48*5 + 2.555-.43-.08+.48,1.58-.08+3.4],[.33,.33],"m1")
-make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57+.48,.17],"m1")
+make_pin(eight_delay,[7*.48*5 + 1.115-.43,1.08+.47+.08+3.4],"m1","OUT" + str(7))
+make_rect(eight_delay,[7*.48*5 + 1.115-.43,.47+1.08+.08+3.4],[.17,.17],"m1.con")
+make_rect(eight_delay,[7*.48*5 + 2.555-.43+.48,1.58+3.4],[.17,.17],"m1.con")
+make_rect(eight_delay,[7*.48*5 + 1.115-.43-.08,.47+1.08+3.4],[.33,.33],"m1")
+make_rect(eight_delay,[7*.48*5 + 2.555-.43-.08+.48,1.58-.08+3.4],[.33,.33],"m1")
+make_rect(eight_delay,[7*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57+.48,.17],"m1")
 
 
-make_bone(top,[7*.48*4-.48*1-.23,-2.77],7.33,"m1")
-make_bone(top,[7*.48*4-.48*1-.23+8.11,-2.77],11.50,"m1")
+make_bone(eight_delay,[7*.48*4-.48*1-.23,-2.77],7.33,"m1")
+make_bone(eight_delay,[7*.48*4-.48*1-.23+8.11,-2.77],11.50,"m1")
 
-make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+.08+3.4],[.17,.17],"m1.con")
-make_rect(top,[7*.48*5 + 2.555-.43+.48,1.58+3.4],[.17,.17],"m1.con")
-make_rect(top,[7*.48*5 + 1.115-.43-.08,.47+1.08+3.4],[.33,.33],"m1")
-make_rect(top,[7*.48*5 + 2.555-.43-.08+.48,1.58-.08+3.4],[.33,.33],"m1")
-make_rect(top,[7*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57+.48,.17],"m1")
+make_rect(eight_delay,[7*.48*5 + 1.115-.43,.47+1.08+.08+3.4],[.17,.17],"m1.con")
+make_rect(eight_delay,[7*.48*5 + 2.555-.43+.48,1.58+3.4],[.17,.17],"m1.con")
+make_rect(eight_delay,[7*.48*5 + 1.115-.43-.08,.47+1.08+3.4],[.33,.33],"m1")
+make_rect(eight_delay,[7*.48*5 + 2.555-.43-.08+.48,1.58-.08+3.4],[.33,.33],"m1")
+make_rect(eight_delay,[7*.48*5 + 1.115-.43,.47+1.08+3.4],[1.57+.48,.17],"m1")
 
+make_rect(eight_delay,[6.875+.48*2+.48*31,-1.38-.37],[.17,.17],["m1.con","m2.con"])
+make_rect(eight_delay,[6.875+.48*2+.48*31-.09,-1.38-.37-.09],[.35,.35],["m1","m2"])
+make_rect(eight_delay,[6.875+.48*2+.48*31,-1.38-.37-1],[.17,1],"m2")
+
+make_rect(eight_delay,[1.12,-2.825],[.17,.17],["m1.con","m2.con"])
+make_rect(eight_delay,[1.12-.09,-2.825-.08],[.35,.33],["m1","m2"])
+make_rect(top,[1.12,-1.38-.37-1-.11],[21.765,.17],"m2")
+
+make_rect(top,[0.255,16.05],[14.95,.17],"m2")
+make_rect(top,[0.255,16.05],[.17,-18.91],"m2")
+make_rect(eight_delay,[0.255,-2.825],[.17,.17],["m1.con","m2.con"])
+make_rect(eight_delay,[0.255-.09,-2.825-.08],[.35,.33],["m1","m2"])
+make_rect(eight_delay,[0.255+14.95-.17,16.0],[.17,.17],["m1.con","m2.con"])
+make_rect(eight_delay,[0.255+14.95-.09-.17,16.0-.08],[.35,.33],["m1","m2"])
+
+#make_rect(eight_delay,[6.875+.48*2+.48*31-.09,-1.38-.37-.09],[.35,.35],["m1","m2"])
+#make_rect(eight_delay,[6.875+.48*2+.48*31,-1.38-.37-1],[.17,1],"m2")
 
 for i in range(4):
    dcell = db.DCellInstArray.new(unit_delay.cell_index(),db.DTrans.R0)
@@ -345,19 +389,47 @@ make_rect(quad_delay,[1*.48*10 + 6-.16+6.75-.08, .43+.08-1.17-.08], [.33,.33],"m
 make_pin([quad_delay],[-0.145+0*.48,-1.435],"m1","S4B")
 make_pin([quad_delay],[-0.145+0*.48,-2.015],"m1","S4")
 
-make_pin([top,quad_delay],[-0.145+10*.48,-1.435],"m1","S2B")
-make_pin([top,quad_delay],[-0.145+10*.48,-2.015],"m1","S2")
-make_pin([top,quad_delay],[-0.145+20*.48,-1.435],"m1","S3B")
-make_pin([top,quad_delay],[-0.145+20*.48,-2.015],"m1","S3")
-make_pin([top],[-0.145+61*.48,-1.435],"m1","S3B")
-make_pin([top],[-0.145+61*.48,-2.015],"m1","S3")
-make_pin([top],[-0.145+41*.48,-1.435],"m1","S4B")
-make_pin([top],[-0.145+41*.48,-2.015],"m1","S4")
+make_pin([top,eight_delay,quad_delay],[-0.145+10*.48,-1.435],"m1","S2B")
+make_pin([top,eight_delay,quad_delay],[-0.145+10*.48,-2.015],"m1","S2")
+make_pin([top,eight_delay,quad_delay],[-0.145+20*.48,-1.435],"m1","S3B")
+make_pin([top,eight_delay,quad_delay],[-0.145+20*.48,-2.015],"m1","S3")
+make_pin([top,eight_delay],[-0.145+61*.48,-1.435],"m1","S3B")
+make_pin([top,eight_delay],[-0.145+61*.48,-2.015],"m1","S3")
+make_pin([top,eight_delay],[-0.145+41*.48,-1.435],"m1","S4B")
+make_pin([top,eight_delay],[-0.145+41*.48,-2.015],"m1","S4")
 
-make_pin([top,quad_delay],[0.155,-3.415],"m1","VDD")
-make_pin([top,quad_delay],[6.875+.48*2,-1.38],"li","OUTDD")
-make_pin([top,quad_delay],[6.875+.48*12,-1.38],"li","OUTDDD")
-make_pin([top,quad_delay],[6.875+.48*2+.48*31,-1.38],"li","OUTDDDD")
+make_pin([top,eight_delay,quad_delay],[0.155,-3.415],"m1","VDD")
+make_pin([top,eight_delay,quad_delay],[6.875+.48*2,-1.38],"li","OUTDD")
+make_pin([top,eight_delay,quad_delay],[6.875+.48*12,-1.38],"li","OUTDDD")
+make_pin([top,eight_delay],[6.875+.48*2+.48*31,-1.38],"li","OUTDDDD")
+
+make_rect(top,[37.83,6.5],[.15,.5],"poly")
+make_rect(top,[37.83,6.5],[.25,.15],"poly")
+make_rect(top,[38,6.0],[.33,.65],"poly")
+make_rect(top,[38,6.0-.1],[.33,.85],"npc")
+make_rect(top,[38+.08,6.08],[.17,.17],"li.con")
+make_rect(top,[38-.2,6.0],[.33+.19,.33],"li")
+
+make_bone(top,[38.3,1.06],11.2,"m2",True,ps=.35,ol="m1")
+make_bone(top,[38.3-.57,1.06+.85],11.2-.85*2,"m2",True,ps=.35,ol="m1")
+make_bone(top,[36.11,-2.35],18.09,"m2",True,ps=.35,ol="m1")
+make_bone(top,[36.61,-1.01],17.09-1.76,"m2",True,ps=.35,ol="m1")
+
+make_bone(eight_delay,[9.53,-1.41],2,"m2",False,ps=.35,ol="m1",two_sided=False)
+make_bone(eight_delay,[9.53+19.69,-1.41],-2,"m2",False,ps=.35,ol="m1",two_sided=False)
+make_rect(eight_delay,[9.55+2-.17,-1.41-.085],[.17,2],"m2")
+make_rect(eight_delay,[9.55+19.69-2-.17,-1.41-.085],[.17,2],"m2")
+make_rect(eight_delay,[9.55+2-.17,-1.41-.085+2],[19.69-4+.17,.17],"m2")
+
+make_bone(eight_delay,[9.55+1.64,-1.92],4,"m2",False,ps=.35,ol="m1",two_sided=False)
+make_bone(eight_delay,[9.55+1.64+19.7,-1.92],-5,"m2",False,ps=.35,ol="m1",two_sided=False)
+make_rect(eight_delay,[9.55+1.64+4-.17,-1.92-.085],[.17,1.345],"m2")
+make_rect(eight_delay,[9.55+1.64+19.7-5-.17,-1.92-.085],[.17,1.345],"m2")
+make_rect(eight_delay,[9.55+1.64+4-.17,-1.92-.085+1.345],[19.7-9+.17,.17],"m2")
+
+make_rect(top,[9.55+19-.17,-1.41-.085],[.17,20-3.6],"m2")
+make_rect(top,[9.55+21.5-.17,-1.41-.085-.6],[.17,20-3.6+.92],"m2")
+make_rect(top,[9.55+21.5,-1.41-.085-.6+20-3.6+.92-.07],[-5,.17],"m2")
 
 
 dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.R0)
@@ -374,10 +446,18 @@ quad_delay.insert(dcell)
 
 
 dcell = db.DCellInstArray.new(quad_delay.cell_index(),db.DTrans.R0)
-top.insert(dcell)
+eight_delay.insert(dcell)
 
 dcell = db.DCellInstArray.new(quad_delay.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,.48*41,0) * dcell.trans
+eight_delay.insert(dcell)
+
+
+dcell = db.DCellInstArray.new(eight_delay.cell_index(),db.DTrans.R0)
+top.insert(dcell)
+
+dcell = db.DCellInstArray.new(eight_delay.cell_index(),db.DTrans.R180)
+dcell.trans = db.DTrans.new(0,False,0.48*79,14-.68) * dcell.trans
 top.insert(dcell)
 
 #m1
