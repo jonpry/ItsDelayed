@@ -380,6 +380,8 @@ for i in range(4):
       make_rect(quad_delay,[i*.48*10-.54+.095+.1+.12,-1.5],[.32,.43],"m1")
       make_rect(quad_delay,[i*.48*10-.54+.095+.1+.12,-2.4],[.32,.6],"m1")
 
+make_rect(top,[7*.48*10-.54+.095+.1+.12+4.4,-1.5+16.7],[.32,.43],"m1")
+make_rect(top,[7*.48*10-.54+.095+.1+.12+4.4,-2.4+16.7],[.32,.6],"m1")
 
 make_rect(quad_delay,[1*.48*10 + 2.98500+.08, .43+.08-1.17], [2.1,.17],"m1")
 make_rect(quad_delay,[1*.48*10 + 2.98500, .43-1.17+.08], [.17,.17],"m1.con")
@@ -459,6 +461,9 @@ make_rect(top,[19.62,-2.0],[-.5,0.17],"m1")
 make_bone(top,[19.12,-2+.085],8.2,"m2",True,ps=.35,ol="m1",two_sided=False)
 make_bone(top,[16.64,15.21],-8.2-.725,"m2",True,ps=.35,ol="m1",two_sided=False)
 make_rect(top,[19.12,-1.44+7.47],[-2.47-.105,.17],"m2")
+
+make_rect(top,[36.6,15.98],[.17,.5],"m1")
+make_rect(top,[37.5,15.98],[.17,.5],"m1")
 
 dcell = db.DCellInstArray.new(scs8hs_tap_1.cell_index(),db.DTrans.R0)
 dcell.trans = db.DTrans.new(0,False,.48*39,0) * dcell.trans
