@@ -62,21 +62,22 @@
 *.subckt TOP S SB VSS VDD S2B S2 S3B S3 S4B S4 S5B S5 OUTD IN OUT OUTDD OUTDDD OUTDDDD
 * .subckt TOP S SB VSS VDD S2B S2 S3B S3 S4B S4 S5B S5 S3 OUTD IN OUT OUTDDDDD OUTDD OUTDDD OUTDDDD
 *.SUBCKT TOP VSS IN OUTDDDDD OUTD OUT OUTDD OUTDDD OUTDDDD S5 S5B SB S VDD S2 S2B S3 S3B S4 S4B
+*.subckt TOP VSS VDD OUTDDDDD IN S S2 S3 S4 S5
+*.SUBCKT TOP VSS VDD S5 S4 IN S3 S S2 OUTDDDDD
+
 
    
 *X1 gnd IN OUTDDDDD OUTD OUT OUTDD OUTDDD OUTDDDD ctrl5 ctrl5b ctrlb ctrl pwr ctrl2 ctrl2b ctrl3 ctrl3b ctrl4 ctrl4b TOP
-X1 ctrl ctrlb gnd pwr ctrl2b ctrl2 ctrl3b ctrl3 ctrl4b ctrl4 ctrl5b ctrl5 ctrl3 outd IN out OUTDDDDD outdd outddd outdddd TOP
+X1 gnd pwr outddddd in ctrl ctrl2 ctrl3 ctrl4 ctrl5 TOP
+*X1 gnd pwr ctrl5 ctrl4 in ctrl3 ctrl ctrl2 outddddd TOP
+
+
 Vpos pwr gnd DC 1.8V 
 Vctrl ctrl gnd DC 1.8V 
-Vctrlb ctrlb gnd DC 0V 
 Vctrl2 ctrl2 gnd DC 1.8V 
-Vctrl2b ctrl2b gnd DC 0V
 Vctrl3 ctrl3 gnd DC 0V       
-Vctrl3b ctrl3b gnd DC 1.8V  
 Vctrl4 ctrl4 gnd DC 0V       
-Vctrl4b ctrl4b gnd DC 1.8V  
 Vctrl5 ctrl5 gnd DC 1.8V       
-Vctrl5b ctrl5b gnd DC 0V  
 Vsig in2 gnd DC 0V PULSE(0 1.8V 0 100p 100p 500p 1n) 
 R10001 in in2 1k
 
@@ -90,135 +91,91 @@ R10001 in in2 1k
 .control
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 1.8V
-alter @Vctrl3b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 0V
-alter @Vctrl3b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl4[dc] = 1.8V
-alter @Vctrl4b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 1.8V
-alter @Vctrl3b[dc] = 0V
 TRAN 10p 5N
-alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
+alter @Vctrl[dc] = 0Valter 
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 0V
-alter @Vctrl3b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl5[dc] = 0V
-alter @Vctrl5b[dc] = 1.8V
 alter @Vctrl4[dc] = 0V
-alter @Vctrl4b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 1.8V
-alter @Vctrl3b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 0V
-alter @Vctrl3b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl4[dc] = 1.8V
-alter @Vctrl4b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 1.8V
-alter @Vctrl3b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl[dc] = 0V
-alter @Vctrlb[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 0V
-alter @Vctrl2b[dc] = 1.8V
 TRAN 10p 5N
 alter @Vctrl[dc] = 1.8V
-alter @Vctrlb[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl2[dc] = 1.8V
-alter @Vctrl2b[dc] = 0V
 TRAN 10p 5N
 alter @Vctrl3[dc] = 0V
-alter @Vctrl3b[dc] = 1.8V
 TRAN 10p 5N
 
 plot v(in) tran2.v(outddddd) tran3.v(outddddd) tran4.v(outddddd) tran5.v(outddddd) tran6.v(outddddd) tran7.v(outddddd) tran8.v(outddddd) tran9.v(outddddd) tran10.v(outddddd) tran11.v(outddddd) tran12.v(outddddd) tran13.v(outddddd) tran14.v(outddddd) tran15.v(outddddd) tran16.v(outddddd) tran17.v(outddddd) tran18.v(outddddd) tran19.v(outddddd) tran20.v(outddddd) tran21.v(outddddd) tran22.v(outddddd) tran23.v(outddddd) tran24.v(outddddd) tran25.v(outddddd) tran26.v(outddddd) tran27.v(outddddd) tran28.v(outddddd) tran29.v(outddddd) tran30.v(outddddd) tran31.v(outddddd) tran32.v(outddddd) tran33.v(outddddd) tran34.v(outddddd) tran35.v(outddddd) tran36.v(outddddd) tran37.v(outddddd) tran38.v(outddddd) tran39.v(outddddd) tran40.v(outddddd) tran41.v(outddddd) tran42.v(outddddd) tran43.v(outddddd)

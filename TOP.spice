@@ -1,0 +1,1417 @@
+* NGSPICE file created from TOP.ext - technology: TECHNAME
+
+
+.subckt scs8hs_buf_2 vpwr vgnd A X vnb vpb a_21_260#
+M1000 vgnd a_21_260# X vnb nlowvt w=148 l=30
++  ad=20864 pd=878 as=8288 ps=408
+M1001 a_21_260# A vgnd vnb nlowvt w=128 l=30
++  ad=7296 pd=370 as=0 ps=0
+M1002 X a_21_260# vpwr vpb pshort w=224 l=30
++  ad=13440 pd=568 as=47056 ps=1320
+M1003 vpwr a_21_260# X vpb pshort w=224 l=30
++  ad=0 pd=0 as=0 ps=0
+M1004 X a_21_260# vgnd vnb nlowvt w=148 l=30
++  ad=0 pd=0 as=0 ps=0
+M1005 a_21_260# A vpwr vpb pshort w=200 l=30
++  ad=12800 pd=528 as=0 ps=0
+C0 vpwr A 0.01fF
+C1 vpwr vgnd 0.01fF
+C2 X A 0.03fF
+C3 X vgnd 0.28fF
+C4 A vgnd 0.01fF
+C5 a_21_260# vpb 0.00fF
+C6 a_21_260# vpwr 0.65fF
+C7 a_21_260# X 0.78fF
+C8 a_21_260# A 0.43fF
+C9 vpb vpwr 0.04fF
+C10 a_21_260# vgnd 0.27fF
+C11 vpb X 0.00fF
+C12 vpwr X 0.03fF
+C13 vpb A 0.00fF
+C14 vgnd 0 0.49fF
+C15 A 0 0.23fF
+C16 X 0 0.02fF
+C17 vpwr 0 0.49fF
+C18 vpb 0 0.48fF
+C19 a_21_260# 0 0.74fF
+.ends
+
+.subckt pfet_small a_116_0# w_n36_n36# VSS li_n45_n4# a_0_n26# li_41_n4# li_127_n4#
++ a_30_0# a_86_n26# a_n50_0#
+M1000 a_116_0# a_86_n26# a_30_0# w_n36_n36# pshort w=224 l=30
++  ad=11200 pd=548 as=12544 ps=560
+M1001 a_30_0# a_0_n26# a_n50_0# w_n36_n36# pshort w=224 l=30
++  ad=0 pd=0 as=11200 ps=548
+C0 a_30_0# li_41_n4# 0.12fF
+C1 li_n45_n4# li_41_n4# 0.13fF
+C2 a_0_n26# a_86_n26# 0.02fF
+C3 a_116_0# li_127_n4# 0.12fF
+C4 li_41_n4# w_n36_n36# 0.00fF
+C5 li_n45_n4# w_n36_n36# 0.00fF
+C6 li_127_n4# li_41_n4# 0.13fF
+C7 li_n45_n4# li_127_n4# 0.05fF
+C8 li_127_n4# w_n36_n36# 0.00fF
+C9 li_n45_n4# a_n50_0# 0.12fF
+C10 li_127_n4# VSS 0.01fF
+C11 li_n45_n4# VSS 0.01fF
+C12 a_86_n26# VSS 0.05fF
+C13 a_0_n26# VSS 0.05fF
+C14 w_n36_n36# VSS 0.17fF
+C15 li_41_n4# VSS 0.01fF
+.ends
+
+.subckt nfet_small a_n64_0# a_116_0# VSS a_0_n26# a_30_0# a_86_n26#
+M1000 a_30_0# a_0_n26# a_n64_0# VSS nlowvt w=148 l=30
++  ad=8064 pd=400 as=9216 ps=416
+M1001 a_116_0# a_86_n26# a_30_0# VSS nlowvt w=148 l=30
++  ad=9216 pd=416 as=0 ps=0
+C0 a_30_0# a_n64_0# 0.09fF
+C1 a_n64_0# a_116_0# 0.03fF
+C2 a_30_0# a_116_0# 0.09fF
+C3 a_86_n26# a_0_n26# 0.02fF
+C4 a_116_0# VSS 0.01fF
+C5 a_86_n26# VSS 0.05fF
+C6 a_0_n26# VSS 0.05fF
+C7 a_30_0# VSS 0.01fF
+C8 a_n64_0# VSS 0.01fF
+.ends
+
+.subckt scs8hs_inv_1_mod vpwr vgnd Y A vnb vpb
+M1000 Y A vpwr vpb pshort w=224 l=30
++  ad=13216 pd=566 as=15456 ps=586
+M1001 Y A vgnd vnb nlowvt w=148 l=30
++  ad=8436 pd=410 as=10508 ps=438
+C0 A vpwr 0.08fF
+C1 Y vgnd 0.19fF
+C2 vpb Y 0.00fF
+C3 Y vpwr 0.20fF
+C4 A Y 0.26fF
+C5 vgnd vpwr 0.01fF
+C6 A vgnd 0.08fF
+C7 vpb vpwr 0.02fF
+C8 vpb A 0.00fF
+C9 vgnd 0 0.37fF
+C10 Y 0 0.19fF
+C11 vpwr 0 0.28fF
+C12 A 0 0.36fF
+C13 vpb 0 0.29fF
+.ends
+
+.subckt emux VSS VDD S SB OUTD VSS VDD scs8hs_fill_1_2/vpb OUTD VSS a_46_399# li_51_74#
++ VSS scs8hs_fill_1_2/vpb VSS scs8hs_fill_1_2/vpb VSS scs8hs_inv_1_mod_0/A a_126_399#
++ VSS VSS VDD li_223_74# scs8hs_fill_1_2/vpb scs8hs_inv_1_mod_0/A li_51_74# VSS VSS
++ li_223_74# VDD a_212_399#
+Xpfet_small_0 a_212_399# scs8hs_fill_1_2/vpb VSS li_51_74# S scs8hs_inv_1_mod_0/A
++ li_223_74# a_126_399# SB a_46_399# pfet_small
+Xnfet_small_0 li_51_74# li_223_74# VSS SB scs8hs_inv_1_mod_0/A S nfet_small
+Xscs8hs_inv_1_mod_0 VDD VSS OUTD scs8hs_inv_1_mod_0/A VSS scs8hs_fill_1_2/vpb scs8hs_inv_1_mod
+C0 scs8hs_inv_1_mod_0/A OUTD 0.00fF
+C1 VDD SB 0.02fF
+C2 SB S 0.28fF
+C3 VDD a_46_399# 0.01fF
+C4 VDD S 0.10fF
+C5 S a_46_399# 0.01fF
+C6 scs8hs_inv_1_mod_0/A li_223_74# 0.19fF
+C7 scs8hs_inv_1_mod_0/A li_51_74# 0.15fF
+C8 scs8hs_inv_1_mod_0/A scs8hs_fill_1_2/vpb 0.00fF
+C9 S OUTD 0.01fF
+C10 VDD a_126_399# 0.01fF
+C11 SB li_223_74# 0.01fF
+C12 S a_126_399# 0.01fF
+C13 VDD li_223_74# 0.03fF
+C14 SB li_51_74# 0.09fF
+C15 VDD a_212_399# 0.01fF
+C16 S li_223_74# 0.14fF
+C17 VDD li_51_74# 0.02fF
+C18 S a_212_399# 0.01fF
+C19 VDD scs8hs_fill_1_2/vpb 0.04fF
+C20 S li_51_74# 0.14fF
+C21 S scs8hs_fill_1_2/vpb 0.00fF
+C22 li_223_74# OUTD 0.05fF
+C23 li_223_74# li_51_74# 0.05fF
+C24 scs8hs_inv_1_mod_0/A SB 0.14fF
+C25 li_223_74# scs8hs_fill_1_2/vpb 0.00fF
+C26 VDD scs8hs_inv_1_mod_0/A 0.08fF
+C27 scs8hs_inv_1_mod_0/A S 0.38fF
+C28 scs8hs_fill_1_2/vpb li_51_74# 0.00fF
+C29 OUTD VSS 0.04fF
+C30 li_223_74# VSS 0.16fF
+C31 S VSS 0.52fF
+C32 SB VSS 0.40fF
+C33 scs8hs_inv_1_mod_0/A VSS 0.49fF
+C34 VDD VSS 0.03fF
+C35 li_51_74# VSS 0.14fF
+.ends
+
+.subckt unit_delay VSS VDD S SB OUTD IN OUT OUT IN VDD emux_0/scs8hs_inv_1_mod_0/A
++ scs8hs_buf_2_1/vpb scs8hs_buf_2_1/vpb a_46_399# VSS VSS VSS VSS S scs8hs_buf_2_0/A
++ scs8hs_buf_2_1/a_21_260# VDD scs8hs_buf_2_1/vpb scs8hs_buf_2_1/X VDD VSS SB VSS
++ a_126_399# VSS scs8hs_buf_2_1/vpb VDD VSS VSS scs8hs_buf_2_0/a_21_260# VDD VDD VSS
++ OUTD IN OUTD scs8hs_buf_2_1/vpb scs8hs_buf_2_1/vpb VSS VSS a_212_399#
+Xscs8hs_buf_2_0 VDD VSS scs8hs_buf_2_0/A OUT VSS scs8hs_buf_2_1/vpb scs8hs_buf_2_0/a_21_260#
++ scs8hs_buf_2
+Xscs8hs_buf_2_1 VDD VSS IN scs8hs_buf_2_1/X VSS scs8hs_buf_2_1/vpb scs8hs_buf_2_1/a_21_260#
++ scs8hs_buf_2
+Xemux_0 VSS VDD S SB OUTD VSS VDD scs8hs_buf_2_1/vpb OUTD VSS a_46_399# IN VSS scs8hs_buf_2_1/vpb
++ VSS scs8hs_buf_2_1/vpb VSS emux_0/scs8hs_inv_1_mod_0/A a_126_399# VSS VSS VDD scs8hs_buf_2_0/A
++ scs8hs_buf_2_1/vpb emux_0/scs8hs_inv_1_mod_0/A IN VSS VSS scs8hs_buf_2_0/A VDD a_212_399#
++ emux
+C0 OUT scs8hs_buf_2_1/a_21_260# 0.02fF
+C1 OUTD scs8hs_buf_2_0/a_21_260# 0.01fF
+C2 VDD OUT 0.01fF
+C3 a_46_399# IN -0.01fF
+C4 scs8hs_buf_2_0/A a_212_399# -0.01fF
+C5 emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_1/a_21_260# 0.00fF
+C6 scs8hs_buf_2_0/A scs8hs_buf_2_1/a_21_260# 0.10fF
+C7 scs8hs_buf_2_1/a_21_260# IN 0.03fF
+C8 emux_0/scs8hs_inv_1_mod_0/A VDD 0.02fF
+C9 SB scs8hs_buf_2_1/a_21_260# 0.01fF
+C10 emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_1/X 0.00fF
+C11 S scs8hs_buf_2_1/a_21_260# 0.01fF
+C12 scs8hs_buf_2_0/A VDD 0.25fF
+C13 emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_0/A 0.02fF
+C14 VDD IN 0.15fF
+C15 scs8hs_buf_2_0/A scs8hs_buf_2_1/X 0.01fF
+C16 VDD SB 0.02fF
+C17 scs8hs_buf_2_0/a_21_260# scs8hs_buf_2_1/a_21_260# 0.09fF
+C18 VDD S 0.03fF
+C19 scs8hs_buf_2_0/A IN 0.02fF
+C20 OUTD OUT 0.00fF
+C21 scs8hs_buf_2_0/A SB 0.00fF
+C22 SB IN 0.02fF
+C23 scs8hs_buf_2_0/A S 0.02fF
+C24 S IN 0.03fF
+C25 VDD scs8hs_buf_2_0/a_21_260# 0.17fF
+C26 emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_0/a_21_260# 0.00fF
+C27 scs8hs_buf_2_0/a_21_260# scs8hs_buf_2_1/X 0.05fF
+C28 scs8hs_buf_2_0/A scs8hs_buf_2_0/a_21_260# 0.02fF
+C29 VDD OUTD 0.04fF
+C30 VDD scs8hs_buf_2_1/vpb -0.02fF
+C31 scs8hs_buf_2_0/A OUTD 0.01fF
+C32 scs8hs_buf_2_0/A scs8hs_buf_2_1/vpb 0.01fF
+C33 scs8hs_buf_2_1/vpb IN 0.00fF
+C34 OUTD VSS 0.04fF
+C35 scs8hs_buf_2_0/A VSS 0.32fF
+C36 S VSS 0.03fF
+C37 SB VSS 0.03fF
+C38 VDD VSS 0.03fF
+C39 IN VSS -0.13fF
+C40 scs8hs_buf_2_1/X VSS 0.01fF
+C41 OUT VSS 0.03fF
+C42 scs8hs_buf_2_0/a_21_260# VSS 0.04fF
+.ends
+
+.subckt quad_delay VSS VDD S SB OUT0 OUT OUT2 OUT3 OUT4 OUT5 OUT6 S4B S4 S2B S2 S3B
++ S3 S3 OUTD IN OUT OUTDDDDD OUTDDDD OUTDD OUTDDD OUT5 VSS VDD SB emux_3/scs8hs_inv_1_mod_0/A
++ OUT unit_delay_1/scs8hs_buf_2_1/a_21_260# VDD emux_3/li_223_74# VSS VDD VSS VSS
++ unit_delay_0/OUTD a_126_n623# VSS emux_3/li_51_74# VDD VSS emux_0/scs8hs_inv_1_mod_0/A
++ emux_2/scs8hs_inv_1_mod_0/A S OUTD a_46_399# OUT6 a_2926_n623# a_1966_n623# unit_delay_0/OUT
++ VDD a_1006_399# S2B OUT3 VSS S OUTDD VDD VDD VSS OUT a_2132_399# S2 unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ unit_delay_1/scs8hs_buf_2_0/a_21_260# VDD VDD OUTD S VSS VDD OUTDDDDD OUTDDD SB
++ VDD unit_delay_0/scs8hs_buf_2_1/a_21_260# VSS S2 a_1172_399# VDD VSS OUT0 VDD VSS
++ a_1006_n623# VSS unit_delay_3/scs8hs_buf_2_1/a_21_260# unit_delay_2/OUTD VDD VDD
++ VSS emux_3/li_51_74# a_2926_399# VDD VSS a_126_399# emux_3/li_223_74# OUTDDD S2B
++ VSS a_2132_n623# S4B VSS VDD a_1172_n623# a_3092_n623# VDD unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ VSS VDD VSS unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A a_1966_399# a_3092_399# unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ IN IN a_46_n623# VSS emux_3/scs8hs_inv_1_mod_0/A emux_1/scs8hs_inv_1_mod_0/A SB
++ VSS VSS unit_delay_3/scs8hs_buf_2_0/a_21_260# a_3006_399# VSS VDD VDD S4 unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ VDD S VSS VDD unit_delay_1/OUTD VDD VSS VDD VDD SB a_212_n623# VSS a_2046_399# S3
++ a_3006_n623# unit_delay_0/OUT VSS OUTDD a_2046_n623# IN VSS VDD a_1086_n623# S S3B
++ VDD VSS OUTDDDD VDD OUTDDDDD VDD a_1086_399# VSS unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ VSS a_212_399# OUT2 unit_delay_2/scs8hs_buf_2_0/a_21_260# SB OUTD VSS
+Xunit_delay_0 VSS VDD S SB unit_delay_0/OUTD OUT5 unit_delay_0/OUT unit_delay_0/OUT
++ OUT5 VDD unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A VDD VDD a_2926_399# VSS VSS VSS
++ VSS S OUT6 unit_delay_0/scs8hs_buf_2_1/a_21_260# VDD VDD OUT6 VDD VSS SB VSS a_3006_399#
++ VSS VDD VDD VSS VSS unit_delay_0/scs8hs_buf_2_0/a_21_260# VDD VDD VSS unit_delay_0/OUTD
++ OUT5 unit_delay_0/OUTD VDD VDD VSS VSS a_3092_399# unit_delay
+Xunit_delay_1 VSS VDD S SB unit_delay_1/OUTD OUT3 OUT5 OUT5 OUT3 VDD unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ VDD VDD a_1966_399# VSS VSS VSS VSS S OUT4 unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ VDD VDD OUT4 VDD VSS SB VSS a_2046_399# VSS VDD VDD VSS VSS unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VDD VDD VSS unit_delay_1/OUTD OUT3 unit_delay_1/OUTD VDD VDD VSS VSS a_2132_399#
++ unit_delay
+Xunit_delay_2 VSS VDD S SB unit_delay_2/OUTD OUT OUT3 OUT3 OUT VDD unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ VDD VDD a_1006_399# VSS VSS VSS VSS S OUT2 unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ VDD VDD OUT2 VDD VSS SB VSS a_1086_399# VSS VDD VDD VSS VSS unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ VDD VDD VSS unit_delay_2/OUTD OUT unit_delay_2/OUTD VDD VDD VSS VSS a_1172_399#
++ unit_delay
+Xunit_delay_3 VSS VDD S SB OUTD IN OUT OUT IN VDD unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ VDD VDD a_46_399# VSS VSS VSS VSS S OUT0 unit_delay_3/scs8hs_buf_2_1/a_21_260# VDD
++ VDD OUT0 VDD VSS SB VSS a_126_399# VSS VDD VDD VSS VSS unit_delay_3/scs8hs_buf_2_0/a_21_260#
++ VDD VDD VSS OUTD IN OUTD VDD VDD VSS VSS a_212_399# unit_delay
+Xemux_0 VSS VDD S2 S2B OUTDDDD VSS VDD VDD OUTDDDD VSS a_2926_n623# unit_delay_1/OUTD
++ VSS VDD VSS VDD VSS emux_0/scs8hs_inv_1_mod_0/A a_3006_n623# VSS VSS VDD unit_delay_0/OUTD
++ VDD emux_0/scs8hs_inv_1_mod_0/A unit_delay_1/OUTD VSS VSS unit_delay_0/OUTD VDD
++ a_3092_n623# emux
+Xemux_1 VSS VDD S3 S3B OUTDDD VSS VDD VDD OUTDDD VSS a_1966_n623# OUTDD VSS VDD VSS
++ VDD VSS emux_1/scs8hs_inv_1_mod_0/A a_2046_n623# VSS VSS VDD OUTDDDD VDD emux_1/scs8hs_inv_1_mod_0/A
++ OUTDD VSS VSS OUTDDDD VDD a_2132_n623# emux
+Xemux_2 VSS VDD S2 S2B OUTDD VSS VDD VDD OUTDD VSS a_1006_n623# OUTD VSS VDD VSS VDD
++ VSS emux_2/scs8hs_inv_1_mod_0/A a_1086_n623# VSS VSS VDD unit_delay_2/OUTD VDD emux_2/scs8hs_inv_1_mod_0/A
++ OUTD VSS VSS unit_delay_2/OUTD VDD a_1172_n623# emux
+Xemux_3 VSS VDD S4 S4B OUTDDDDD VSS VDD VDD OUTDDDDD VSS a_46_n623# emux_3/li_51_74#
++ VSS VDD VSS VDD VSS emux_3/scs8hs_inv_1_mod_0/A a_126_n623# VSS VSS VDD emux_3/li_223_74#
++ VDD emux_3/scs8hs_inv_1_mod_0/A emux_3/li_51_74# VSS VSS emux_3/li_223_74# VDD a_212_n623#
++ emux
+C0 S unit_delay_1/OUTD 0.08fF
+C1 S2B emux_3/li_51_74# 0.05fF
+C2 OUT3 unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.30fF
+C3 emux_2/scs8hs_inv_1_mod_0/A S3 0.00fF
+C4 OUTDD S2 0.18fF
+C5 unit_delay_1/scs8hs_buf_2_0/a_21_260# OUT5 0.21fF
+C6 OUTDD emux_1/scs8hs_inv_1_mod_0/A -0.00fF
+C7 OUT unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.00fF
+C8 SB S 1.39fF
+C9 a_1172_n623# S2 0.02fF
+C10 emux_2/scs8hs_inv_1_mod_0/A S3B 0.02fF
+C11 SB unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A 0.51fF
+C12 VDD unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.14fF
+C13 unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A OUT3 0.00fF
+C14 SB OUTDD 0.08fF
+C15 S VDD 0.79fF
+C16 S OUTD 0.08fF
+C17 unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A VDD -0.00fF
+C18 OUTD unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A 0.01fF
+C19 OUT4 unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.02fF
+C20 S2 unit_delay_2/OUTD 0.04fF
+C21 OUTDD OUT3 0.01fF
+C22 OUT0 emux_3/li_223_74# 0.01fF
+C23 OUTDD VDD -0.00fF
+C24 unit_delay_2/scs8hs_buf_2_1/a_21_260# OUT2 0.12fF
+C25 OUTDDDD S3 0.05fF
+C26 SB unit_delay_2/OUTD 0.40fF
+C27 S3 S2 0.38fF
+C28 S unit_delay_0/OUTD 0.15fF
+C29 OUT6 unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.20fF
+C30 S S2B 0.01fF
+C31 VDD unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.17fF
+C32 unit_delay_2/scs8hs_buf_2_1/a_21_260# OUT 0.05fF
+C33 OUT3 unit_delay_2/OUTD 0.05fF
+C34 S2 S3B 0.04fF
+C35 OUTD unit_delay_2/OUTD 0.01fF
+C36 OUTDD S2B 0.62fF
+C37 S unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.20fF
+C38 OUTDDDD unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A 0.04fF
+C39 SB S3 0.00fF
+C40 unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A emux_1/scs8hs_inv_1_mod_0/A 0.02fF
+C41 OUT2 unit_delay_2/OUTD 0.07fF
+C42 SB S3B 0.02fF
+C43 S3 VDD 0.00fF
+C44 unit_delay_1/scs8hs_buf_2_1/a_21_260# OUT5 -0.00fF
+C45 S2 S4 0.38fF
+C46 OUT0 unit_delay_3/scs8hs_buf_2_0/a_21_260# 0.00fF
+C47 S2B unit_delay_2/OUTD 0.10fF
+C48 SB unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A 0.51fF
+C49 OUT unit_delay_2/OUTD 0.01fF
+C50 a_212_n623# S2 0.02fF
+C51 VDD unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.02fF
+C52 SB S4 0.00fF
+C53 a_3092_n623# S2 0.02fF
+C54 S3 S2B 0.18fF
+C55 S2 emux_3/li_223_74# 0.04fF
+C56 VDD S4 0.00fF
+C57 unit_delay_1/OUTD OUT5 0.07fF
+C58 S2 a_46_n623# 0.02fF
+C59 S unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A 0.20fF
+C60 S2B S3B 0.14fF
+C61 OUT6 unit_delay_1/scs8hs_buf_2_0/a_21_260# 0.02fF
+C62 VDD unit_delay_1/scs8hs_buf_2_0/a_21_260# -0.00fF
+C63 unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A OUT4 -0.00fF
+C64 SB OUT5 0.05fF
+C65 OUT0 unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.20fF
+C66 SB OUT0 0.05fF
+C67 OUT6 OUT5 0.02fF
+C68 VDD emux_3/li_223_74# 0.02fF
+C69 VDD OUT5 0.08fF
+C70 S2 S4B 0.04fF
+C71 S2B S4 0.18fF
+C72 OUT4 unit_delay_1/scs8hs_buf_2_0/a_21_260# 0.00fF
+C73 OUT0 VDD 0.10fF
+C74 S unit_delay_2/OUTD 0.16fF
+C75 unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A unit_delay_2/OUTD 0.12fF
+C76 emux_2/scs8hs_inv_1_mod_0/A S2 0.18fF
+C77 OUTDD unit_delay_2/OUTD 0.04fF
+C78 SB S4B 0.02fF
+C79 OUT4 OUT5 0.02fF
+C80 unit_delay_0/OUTD OUT5 0.01fF
+C81 S S3 0.02fF
+C82 S2B emux_3/li_223_74# 0.05fF
+C83 S S3B 0.00fF
+C84 OUTDD S3 0.04fF
+C85 OUTDDDD unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.05fF
+C86 OUT0 OUT 0.03fF
+C87 emux_2/scs8hs_inv_1_mod_0/A VDD -0.00fF
+C88 OUTD emux_2/scs8hs_inv_1_mod_0/A 0.00fF
+C89 a_1966_n623# S2 0.02fF
+C90 OUTDDDD S2 0.40fF
+C91 OUT0 unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A -0.00fF
+C92 OUTDD S3B 0.05fF
+C93 OUTDDDD emux_1/scs8hs_inv_1_mod_0/A 0.12fF
+C94 unit_delay_1/OUTD OUTDDDD 0.23fF
+C95 unit_delay_1/OUTD unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.01fF
+C96 S unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A 0.20fF
+C97 unit_delay_1/scs8hs_buf_2_1/a_21_260# OUT3 0.05fF
+C98 unit_delay_1/scs8hs_buf_2_1/a_21_260# VDD 0.17fF
+C99 S2 emux_3/scs8hs_inv_1_mod_0/A 0.18fF
+C100 S2 emux_1/scs8hs_inv_1_mod_0/A 0.18fF
+C101 unit_delay_1/OUTD S2 0.04fF
+C102 S2 a_126_n623# 0.02fF
+C103 S2B S4B 0.14fF
+C104 S S4 0.02fF
+C105 SB OUTDDDD 0.22fF
+C106 SB unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.50fF
+C107 emux_2/scs8hs_inv_1_mod_0/A S2B 0.37fF
+C108 unit_delay_3/scs8hs_buf_2_0/a_21_260# OUT2 0.02fF
+C109 S2 a_3006_n623# 0.02fF
+C110 SB S2 0.01fF
+C111 OUT6 unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A -0.00fF
+C112 OUTDDDD VDD 0.02fF
+C113 VDD unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A -0.00fF
+C114 SB unit_delay_1/OUTD 0.09fF
+C115 a_2132_n623# S2 0.02fF
+C116 unit_delay_1/scs8hs_buf_2_1/a_21_260# OUT4 0.20fF
+C117 VDD S2 1.91fF
+C118 OUTD S2 0.04fF
+C119 unit_delay_3/scs8hs_buf_2_0/a_21_260# OUT 0.30fF
+C120 VDD emux_3/scs8hs_inv_1_mod_0/A 0.02fF
+C121 S2 a_1006_n623# 0.02fF
+C122 unit_delay_1/OUTD VDD 0.00fF
+C123 a_2046_n623# S2 0.02fF
+C124 unit_delay_0/OUT VDD -0.00fF
+C125 S2 a_2926_n623# 0.02fF
+C126 unit_delay_1/scs8hs_buf_2_0/a_21_260# unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.09fF
+C127 VDD unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.12fF
+C128 OUTDDDD OUT4 0.01fF
+C129 SB OUT3 0.05fF
+C130 S2 OUTDDDDD 0.09fF
+C131 SB OUT6 0.05fF
+C132 OUTDDDD emux_0/scs8hs_inv_1_mod_0/A 0.21fF
+C133 OUTDDDD OUTDDD 0.08fF
+C134 OUTDDDD unit_delay_0/OUTD 0.23fF
+C135 emux_0/scs8hs_inv_1_mod_0/A unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.02fF
+C136 SB VDD 0.40fF
+C137 SB OUTD 0.09fF
+C138 unit_delay_0/OUTD unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.12fF
+C139 OUTDDDD S2B 1.46fF
+C140 VDD OUT3 0.08fF
+C141 unit_delay_1/OUTD OUT4 0.00fF
+C142 emux_0/scs8hs_inv_1_mod_0/A S2 0.18fF
+C143 OUTDDD S2 0.09fF
+C144 unit_delay_0/OUTD S2 0.04fF
+C145 OUT6 VDD 0.09fF
+C146 unit_delay_1/OUTD emux_0/scs8hs_inv_1_mod_0/A 0.00fF
+C147 S2 S2B 0.72fF
+C148 unit_delay_1/OUTD unit_delay_0/OUTD 0.01fF
+C149 unit_delay_1/OUTD OUTDDD 0.09fF
+C150 S2B emux_3/scs8hs_inv_1_mod_0/A 0.39fF
+C151 S2B emux_1/scs8hs_inv_1_mod_0/A 0.39fF
+C152 unit_delay_1/OUTD S2B 0.07fF
+C153 unit_delay_0/scs8hs_buf_2_1/a_21_260# OUT5 0.06fF
+C154 S2 emux_3/li_51_74# 0.04fF
+C155 S S4B 0.00fF
+C156 SB IN 0.05fF
+C157 SB OUT2 0.05fF
+C158 unit_delay_1/scs8hs_buf_2_1/a_21_260# unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.09fF
+C159 emux_3/scs8hs_inv_1_mod_0/A unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.02fF
+C160 SB OUT4 0.05fF
+C161 OUT3 OUT2 0.03fF
+C162 emux_2/scs8hs_inv_1_mod_0/A unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A 0.02fF
+C163 IN VDD 0.05fF
+C164 VDD OUTDDDDD 0.00fF
+C165 OUTD OUTDDDDD 0.09fF
+C166 SB unit_delay_0/OUTD 0.39fF
+C167 VDD OUT2 0.09fF
+C168 SB S2B 0.52fF
+C169 SB OUT 0.05fF
+C170 OUT4 OUT3 0.02fF
+C171 OUTDD emux_2/scs8hs_inv_1_mod_0/A 0.02fF
+C172 VDD OUT4 0.09fF
+C173 OUT6 unit_delay_0/OUTD 0.07fF
+C174 VDD emux_0/scs8hs_inv_1_mod_0/A -0.00fF
+C175 VDD unit_delay_0/OUTD 0.02fF
+C176 unit_delay_3/scs8hs_buf_2_0/a_21_260# unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.09fF
+C177 VDD S2B -0.04fF
+C178 OUTD S2B 0.07fF
+C179 SB unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.51fF
+C180 VDD OUT 0.09fF
+C181 VDD emux_3/li_51_74# 0.03fF
+C182 OUTD OUT 0.06fF
+C183 VDD unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.02fF
+C184 S2B OUTDDDDD 0.09fF
+C185 IN emux_3/li_51_74# 0.01fF
+C186 OUT OUT2 0.02fF
+C187 emux_2/scs8hs_inv_1_mod_0/A unit_delay_2/OUTD 0.04fF
+C188 S unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.20fF
+C189 unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A OUT5 0.00fF
+C190 unit_delay_0/OUTD emux_0/scs8hs_inv_1_mod_0/A 0.04fF
+C191 emux_0/scs8hs_inv_1_mod_0/A S2B 0.37fF
+C192 OUTDDD S2B 0.09fF
+C193 unit_delay_0/OUTD S2B 0.10fF
+C194 S2 a_1086_n623# 0.02fF
+C195 S S2 0.03fF
+C196 OUTDDDD OUTDD 0.03fF
+C197 OUTDDDDD VSS 0.04fF
+C198 emux_3/li_223_74# VSS 0.02fF
+C199 S4 VSS 0.03fF
+C200 S4B VSS 0.03fF
+C201 emux_3/scs8hs_inv_1_mod_0/A VSS 0.02fF
+C202 emux_3/li_51_74# VSS 0.03fF
+C203 S2 VSS -0.95fF
+C204 S2B VSS 0.60fF
+C205 OUTDDD VSS -0.01fF
+C206 OUTDDDD VSS 1.69fF
+C207 S3 VSS -0.27fF
+C208 S3B VSS 0.03fF
+C209 OUTDD VSS -0.04fF
+C210 unit_delay_1/OUTD VSS 0.17fF
+C211 OUTD VSS 0.58fF
+C212 OUT0 VSS -0.45fF
+C213 S VSS -1.48fF
+C214 SB VSS 2.63fF
+C215 unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A VSS 0.02fF
+C216 IN VSS -0.06fF
+C217 unit_delay_3/scs8hs_buf_2_1/a_21_260# VSS 0.11fF
+C218 unit_delay_2/OUTD VSS 0.29fF
+C219 OUT2 VSS -0.33fF
+C220 OUT VSS -1.03fF
+C221 unit_delay_2/scs8hs_buf_2_1/a_21_260# VSS 0.02fF
+C222 OUT4 VSS -0.47fF
+C223 VDD VSS 0.06fF
+C224 OUT3 VSS -0.54fF
+C225 unit_delay_1/scs8hs_buf_2_1/a_21_260# VSS 0.04fF
+C226 unit_delay_0/OUTD VSS 1.14fF
+C227 OUT6 VSS -0.47fF
+C228 OUT5 VSS -0.28fF
+C229 unit_delay_0/scs8hs_buf_2_1/a_21_260# VSS 0.04fF
+C230 unit_delay_0/OUT VSS 0.02fF
+C231 unit_delay_0/scs8hs_buf_2_0/a_21_260# VSS 0.00fF
+.ends
+
+.subckt eight_delay VSS VDD S SB OUT7 S2B S2 S3B S3 S4B S4 S5B S5 S3 OUTD IN OUT OUTDDDDD
++ OUTDD OUTDDD OUTDDDD S3 OUT SB a_5902_399# VSS VDD a_5902_n623# VDD a_4942_n623#
++ quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A S2 VSS OUT a_6862_n623# a_3982_n623#
++ a_126_n623# quad_delay_0/unit_delay_0/OUT VDD VSS OUTD a_6068_399# OUTDD quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ VSS S3 VDD VSS VSS S4 a_4942_399# S quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VSS VDD VDD quad_delay_1/OUTDDDD quad_delay_0/OUTD a_46_399# a_2926_n623# a_1966_n623#
++ quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# quad_delay_0/OUTDDD VSS VSS a_1006_399#
++ quad_delay_1/unit_delay_0/OUTD quad_delay_0/unit_delay_2/OUTD S4 VSS VDD S2B quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A a_3982_399# quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A
++ a_2132_399# OUTDD VSS quad_delay_0/OUT6 quad_delay_1/OUT0 quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ VSS VDD OUTD quad_delay_0/OUT5 VSS VSS S IN S5B VSS VDD a_5022_399# S3B quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260#
++ quad_delay_1/OUT2 OUTDDD SB VDD SB a_1172_399# S2B OUTDD quad_delay_1/OUT0 OUTDDD
++ a_6862_399# quad_delay_1/OUT3 VDD quad_delay_0/OUTDDD VSS quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# quad_delay_0/OUTDD VSS VSS VSS
++ S quad_delay_1/OUT4 a_1006_n623# quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A quad_delay_0/OUTDDDD
++ S2 quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ VDD quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# quad_delay_1/OUT5 VSS VDD
++ S3 VSS quad_delay_1/OUT3 VSS VDD S2 a_4062_399# quad_delay_1/OUT6 a_6942_n623# IN
++ S5 quad_delay_0/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A a_5982_n623# a_2926_399#
++ S VSS SB S quad_delay_0/OUT0 a_126_399# SB S3 quad_delay_0/unit_delay_1/OUTD VSS
++ a_2132_n623# VSS quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260# a_1172_n623#
++ VDD S2B S2 VDD OUTDDD li_224_n565# a_3092_n623# li_51_n565# OUT OUTDDDDD S5B VSS
++ quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260# OUTDDD OUTDDDDD VDD quad_delay_1/unit_delay_2/OUTD
++ VSS a_1966_399# quad_delay_0/OUT0 OUTD a_3092_399# VSS a_6942_399# S4B quad_delay_0/OUT
++ VSS quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# a_46_n623# S3B quad_delay_0/OUT2
++ S2B VSS VDD quad_delay_0/OUT3 VSS a_3006_399# quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ SB VSS quad_delay_0/OUT4 VSS a_5022_n623# a_4062_n623# a_5982_399# a_5108_399# quad_delay_0/OUT5
++ quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A
++ quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A S VSS VSS quad_delay_0/OUT6
++ quad_delay_0/OUTDDDD VDD VDD VSS VDD S2B li_51_n565# a_212_n623# quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_2046_399# VSS VSS VSS a_3006_n623# S4B VSS VSS SB quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ IN a_2046_n623# quad_delay_0/unit_delay_0/OUTD quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ a_1086_n623# OUTD S2 a_4148_399# VDD OUTDDDD SB VSS IN VDD VDD quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ VDD VSS a_5108_n623# S3B VSS a_7028_n623# a_4148_n623# quad_delay_1/unit_delay_1/OUTD
++ a_6068_n623# quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A OUTDDDD a_1086_399# S5 quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A
++ quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# VSS OUTDDDDD S S a_212_399# VDD
++ OUTDDDD quad_delay_1/OUT2 VDD quad_delay_1/OUTDDDD a_7028_399# VSS quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ VSS
+Xquad_delay_0 VSS VDD S SB quad_delay_0/OUT0 quad_delay_0/OUT quad_delay_0/OUT2 quad_delay_0/OUT3
++ quad_delay_0/OUT4 quad_delay_0/OUT5 quad_delay_0/OUT6 S4B S4 S2B S2 S3B S3 S3 quad_delay_0/OUTD
++ OUT7 quad_delay_0/OUT OUTDDDD quad_delay_0/OUTDDDD quad_delay_0/OUTDD quad_delay_0/OUTDDD
++ quad_delay_0/OUT5 VSS VDD SB quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A quad_delay_0/OUT
++ quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# VDD quad_delay_0/OUTDDD VSS VDD
++ VSS VSS quad_delay_0/unit_delay_0/OUTD a_4062_n623# VSS OUTDDD VDD VSS quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A S quad_delay_0/OUTD a_3982_399# quad_delay_0/OUT6
++ a_6862_n623# a_5902_n623# quad_delay_0/unit_delay_0/OUT VDD a_4942_399# S2B quad_delay_0/OUT3
++ VSS S quad_delay_0/OUTDD VDD VDD VSS quad_delay_0/OUT a_6068_399# S2 quad_delay_0/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# VDD VDD quad_delay_0/OUTD S VSS
++ VDD OUTDDDD quad_delay_0/OUTDDD SB VDD quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ VSS S2 a_5108_399# VDD VSS quad_delay_0/OUT0 VDD VSS a_4942_n623# VSS quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ quad_delay_0/unit_delay_2/OUTD VDD VDD VSS OUTDDD a_6862_399# VDD VSS a_4062_399#
++ quad_delay_0/OUTDDD quad_delay_0/OUTDDD S2B VSS a_6068_n623# S4B VSS VDD a_5108_n623#
++ a_7028_n623# VDD quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# VSS VDD VSS
++ quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A a_5902_399# a_7028_399# quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ OUT7 OUT7 a_3982_n623# VSS quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A
++ SB VSS VSS quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# a_6942_399# VSS VDD
++ VDD S4 quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# VDD S VSS VDD quad_delay_0/unit_delay_1/OUTD
++ VDD VSS VDD VDD SB a_4148_n623# VSS a_5982_399# S3 a_6942_n623# quad_delay_0/unit_delay_0/OUT
++ VSS quad_delay_0/OUTDD a_5982_n623# OUT7 VSS VDD a_5022_n623# S S3B VDD VSS quad_delay_0/OUTDDDD
++ VDD OUTDDDD VDD a_5022_399# VSS quad_delay_0/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ VSS a_4148_399# quad_delay_0/OUT2 quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ SB quad_delay_0/OUTD VSS quad_delay
+Xquad_delay_1 VSS VDD S SB quad_delay_1/OUT0 OUT quad_delay_1/OUT2 quad_delay_1/OUT3
++ quad_delay_1/OUT4 quad_delay_1/OUT5 quad_delay_1/OUT6 S5B S5 S2B S2 S3B S3 S3 OUTD
++ IN OUT OUTDDDDD quad_delay_1/OUTDDDD OUTDD OUTDDD quad_delay_1/OUT5 VSS VDD SB quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A
++ OUT quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# VDD li_224_n565# VSS VDD
++ VSS VSS quad_delay_1/unit_delay_0/OUTD a_126_n623# VSS li_51_n565# VDD VSS quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A S OUTD a_46_399# quad_delay_1/OUT6 a_2926_n623#
++ a_1966_n623# OUT7 VDD a_1006_399# S2B quad_delay_1/OUT3 VSS S OUTDD VDD VDD VSS
++ OUT a_2132_399# S2 quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VDD VDD OUTD S VSS VDD OUTDDDDD OUTDDD SB VDD quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ VSS S2 a_1172_399# VDD VSS quad_delay_1/OUT0 VDD VSS a_1006_n623# VSS quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ quad_delay_1/unit_delay_2/OUTD VDD VDD VSS li_51_n565# a_2926_399# VDD VSS a_126_399#
++ li_224_n565# OUTDDD S2B VSS a_2132_n623# S5B VSS VDD a_1172_n623# a_3092_n623# VDD
++ quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# VSS VDD VSS quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_1966_399# a_3092_399# quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A IN
++ IN a_46_n623# VSS quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A
++ SB VSS VSS quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260# a_3006_399# VSS VDD
++ VDD S5 quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260# VDD S VSS VDD quad_delay_1/unit_delay_1/OUTD
++ VDD VSS VDD VDD SB a_212_n623# VSS a_2046_399# S3 a_3006_n623# OUT7 VSS OUTDD a_2046_n623#
++ IN VSS VDD a_1086_n623# S S3B VDD VSS quad_delay_1/OUTDDDD VDD OUTDDDDD VDD a_1086_399#
++ VSS quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A VSS a_212_399# quad_delay_1/OUT2
++ quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# SB OUTD VSS quad_delay
+C0 OUTDDDD quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A 0.02fF
+C1 S3B S2 0.00fF
+C2 S4B quad_delay_0/OUTDDD 0.02fF
+C3 S2 S3 0.75fF
+C4 a_212_n623# li_224_n565# 0.04fF
+C5 quad_delay_1/OUT6 OUT7 0.02fF
+C6 quad_delay_0/OUTD quad_delay_0/OUTDDD 0.04fF
+C7 S3B quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A 0.01fF
+C8 quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A quad_delay_0/OUTDDD 0.14fF
+C9 OUTDDDD S4 0.00fF
+C10 quad_delay_0/OUTDDDD S3 0.03fF
+C11 S2 quad_delay_0/OUTDDD 2.31fF
+C12 S3B S 0.31fF
+C13 S2B OUTDDD 0.20fF
+C14 S4B S2 0.00fF
+C15 S5 li_51_n565# 0.06fF
+C16 S5 li_224_n565# 0.03fF
+C17 li_51_n565# S2B 0.01fF
+C18 S2B li_224_n565# 0.01fF
+C19 quad_delay_1/unit_delay_0/OUTD OUTDDD 0.04fF
+C20 quad_delay_0/OUT0 VDD 0.01fF
+C21 quad_delay_0/OUT0 OUT7 0.02fF
+C22 S3B S2B 0.34fF
+C23 SB S -0.03fF
+C24 quad_delay_0/OUTDDDD quad_delay_0/OUTDDD 0.05fF
+C25 S2B S3 1.47fF
+C26 quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A S3B 0.22fF
+C27 quad_delay_1/unit_delay_0/OUTD S3B 0.38fF
+C28 quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A S3 0.03fF
+C29 quad_delay_1/OUT5 S3B 0.05fF
+C30 a_4942_n623# quad_delay_0/OUTDDD 0.02fF
+C31 S3B quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A 0.00fF
+C32 quad_delay_1/unit_delay_0/OUTD S3 0.09fF
+C33 quad_delay_0/OUTDD S3B 0.04fF
+C34 S2B SB -0.01fF
+C35 VDD OUTDDD 1.74fF
+C36 quad_delay_0/OUTDD S3 0.08fF
+C37 VDD li_51_n565# 0.09fF
+C38 S4B S 0.14fF
+C39 VDD li_224_n565# 0.09fF
+C40 quad_delay_1/unit_delay_0/OUTD SB 0.01fF
+C41 quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A OUTDDD 0.00fF
+C42 S3B OUTDD 0.03fF
+C43 quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A S3B 0.06fF
+C44 S2B quad_delay_0/OUTDDD 0.35fF
+C45 VDD S3B 0.00fF
+C46 S3B OUT7 0.06fF
+C47 a_6068_n623# S3 0.01fF
+C48 S4B S2B 0.01fF
+C49 VDD S3 0.11fF
+C50 S5B li_224_n565# 0.03fF
+C51 quad_delay_0/OUT2 S3B 0.05fF
+C52 quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A S3B 0.05fF
+C53 quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A S3 0.20fF
+C54 quad_delay_0/OUTDD quad_delay_0/OUTDDD 0.13fF
+C55 VDD SB -0.01fF
+C56 a_5982_n623# S3 0.01fF
+C57 quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A li_224_n565# 0.02fF
+C58 S4 OUTDDD 0.08fF
+C59 quad_delay_0/unit_delay_2/OUTD S3B 0.22fF
+C60 a_6068_n623# quad_delay_0/OUTDDD 0.02fF
+C61 VDD quad_delay_0/OUTDDD 2.67fF
+C62 S2 S2B -0.02fF
+C63 OUTDDDD S3B 0.01fF
+C64 quad_delay_0/unit_delay_2/OUTD S3 0.16fF
+C65 VDD S4B 0.13fF
+C66 quad_delay_1/unit_delay_1/OUTD OUTDDD 0.04fF
+C67 OUTDDDD S3 0.10fF
+C68 OUT7 S4B 0.34fF
+C69 quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A quad_delay_0/OUTDDD 0.09fF
+C70 S4B quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.21fF
+C71 S4 S3 0.09fF
+C72 a_2926_n623# OUTDDD 0.02fF
+C73 a_5022_n623# quad_delay_0/OUTDDD 0.02fF
+C74 a_5982_n623# quad_delay_0/OUTDDD 0.02fF
+C75 quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A S4B 0.00fF
+C76 quad_delay_1/OUT6 S3B 0.05fF
+C77 quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# OUT7 0.24fF
+C78 S3B quad_delay_1/unit_delay_1/OUTD -0.06fF
+C79 quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.04fF
+C80 quad_delay_0/unit_delay_1/OUTD quad_delay_0/OUTDDD 0.00fF
+C81 quad_delay_1/unit_delay_1/OUTD S3 0.02fF
+C82 a_3006_n623# OUTDDD 0.02fF
+C83 a_3982_n623# OUTDDD 0.03fF
+C84 quad_delay_0/unit_delay_2/OUTD quad_delay_0/OUTDDD 0.04fF
+C85 a_2926_n623# S3 0.01fF
+C86 S4 quad_delay_1/OUTDDDD 0.01fF
+C87 OUTDDDD quad_delay_0/OUTDDD 0.13fF
+C88 quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A S3B 0.05fF
+C89 a_3092_n623# OUTDDD 0.02fF
+C90 VDD S2 -0.10fF
+C91 S4 quad_delay_0/OUTDDD 0.05fF
+C92 OUTDDDDD li_224_n565# 0.00fF
+C93 quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A S3 0.13fF
+C94 S4 S4B 0.02fF
+C95 quad_delay_1/unit_delay_0/OUTD S 0.01fF
+C96 a_3006_n623# S3 0.01fF
+C97 OUTDDDD quad_delay_0/OUTD -0.00fF
+C98 quad_delay_0/OUTDDD a_4148_n623# 0.03fF
+C99 a_5902_n623# S3 0.01fF
+C100 quad_delay_0/OUT0 S3B 0.06fF
+C101 quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A quad_delay_0/OUTDDD 0.13fF
+C102 OUTDDDD S2 0.08fF
+C103 VDD S -0.02fF
+C104 quad_delay_0/OUT S3B 0.14fF
+C105 li_51_n565# li_224_n565# 0.06fF
+C106 li_51_n565# a_46_n623# 0.04fF
+C107 quad_delay_0/OUTDDD a_5902_n623# 0.02fF
+C108 OUTDDD S3 0.13fF
+C109 quad_delay_1/unit_delay_0/OUTD OUT7 0.01fF
+C110 S3B S3 1.13fF
+C111 quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A S3B 0.20fF
+C112 quad_delay_1/OUTDDDD OUTDDD 0.10fF
+C113 quad_delay_0/OUT0 quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.01fF
+C114 quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A S3 0.05fF
+C115 S3B SB 1.17fF
+C116 quad_delay_0/OUTDDD OUTDDD 0.03fF
+C117 SB S3 0.21fF
+C118 S4B OUTDDD 0.01fF
+C119 OUTDDDD S2B 0.04fF
+C120 VDD OUT7 0.10fF
+C121 VDD quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.06fF
+C122 S3B quad_delay_1/OUTDDDD 0.07fF
+C123 OUT7 quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.02fF
+C124 S3B quad_delay_0/OUTDDD 0.03fF
+C125 quad_delay_1/OUTDDDD S3 0.21fF
+C126 a_5108_n623# S3 0.00fF
+C127 quad_delay_0/OUTDDD S3 0.23fF
+C128 S3B S4B 0.08fF
+C129 quad_delay_0/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A S3B 0.13fF
+C130 quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A OUTDDD 0.13fF
+C131 S4B S3 0.11fF
+C132 quad_delay_0/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A S3 0.00fF
+C133 quad_delay_0/OUTD S3B 0.14fF
+C134 S2 OUTDDD 1.56fF
+C135 quad_delay_0/OUTD S3 0.32fF
+C136 S4B SB 0.20fF
+C137 li_51_n565# S2 0.11fF
+C138 OUTDDDD VDD 0.01fF
+C139 quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A S3B 0.00fF
+C140 S2 li_224_n565# 0.11fF
+C141 a_5108_n623# quad_delay_0/OUTDDD 0.02fF
+C142 quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A S3 0.22fF
+C143 quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A S3 0.05fF
+C144 S4B quad_delay_1/OUTDDDD 0.01fF
+C145 OUTDDDDD VSS 0.04fF
+C146 li_224_n565# VSS 0.07fF
+C147 S5 VSS 0.03fF
+C148 S5B VSS 0.03fF
+C149 li_51_n565# VSS 0.07fF
+C150 S2 VSS 0.03fF
+C151 S2B VSS -0.07fF
+C152 S3 VSS -0.25fF
+C153 S3B VSS 2.46fF
+C154 OUTDD VSS -0.27fF
+C155 OUTD VSS 0.04fF
+C156 S VSS -1.04fF
+C157 SB VSS -0.05fF
+C158 IN VSS -0.09fF
+C159 OUT VSS -0.49fF
+C160 VDD VSS 0.03fF
+C161 OUTDDDD VSS 0.15fF
+C162 quad_delay_0/OUTDDD VSS -0.74fF
+C163 S4 VSS -0.08fF
+C164 S4B VSS -0.25fF
+C165 OUTDDD VSS -0.23fF
+C166 OUT7 VSS -0.65fF
+C167 quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# VSS 0.02fF
+.ends
+
+.subckt sixteen_delay VSS VDD S SB S2B S2 S3B S3 S4B S4 S5B S5 S3 OUTD IN OUT OUTDDDDD
++ OUTDD OUTDDD OUTDDDD S eight_delay_0/quad_delay_1/OUT6 eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ a_586_3063# a_5902_399# eight_delay_1/OUT7 eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ a_506_2041# eight_delay_0/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A a_5902_n623#
++ eight_delay_0/quad_delay_0/OUTDDDD VDD a_4942_n623# a_7402_2041# a_4522_2041# a_6862_n623#
++ a_3982_n623# a_126_n623# eight_delay_0/quad_delay_0/unit_delay_0/OUTD a_6068_399#
++ a_6442_2041# VSS a_5482_2041# VDD S a_4942_399# S eight_delay_0/quad_delay_0/OUT0
++ OUTDDDDD SB a_46_399# eight_delay_0/quad_delay_0/OUT a_2926_n623# VDD VSS a_2506_2041#
++ a_1966_n623# eight_delay_0/quad_delay_0/OUT6 S5 a_672_2041# a_1546_2041# eight_delay_1/quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ eight_delay_0/quad_delay_0/OUT2 a_1006_399# a_3466_2041# eight_delay_1/quad_delay_1/unit_delay_1/OUTD
++ eight_delay_1/quad_delay_1/OUT0 VSS eight_delay_1/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ a_5402_3063# eight_delay_0/quad_delay_0/OUT3 a_4442_3063# a_7322_3063# a_6362_3063#
++ a_3982_399# a_4608_2041# VDD eight_delay_0/quad_delay_0/OUT4 eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ S5B a_2132_399# a_6528_2041# eight_delay_1/quad_delay_1/OUT2 VDD VSS a_5568_2041#
++ eight_delay_0/quad_delay_0/OUT5 a_7488_2041# S5B eight_delay_1/quad_delay_1/OUT3
++ eight_delay_0/quad_delay_0/OUT6 eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ VSS eight_delay_1/quad_delay_1/OUT4 eight_delay_0/OUT7 a_2426_3063# VDD eight_delay_0/quad_delay_0/unit_delay_0/OUT
++ a_5022_399# VDD VSS a_1466_3063# eight_delay_1/quad_delay_1/OUT5 eight_delay_0/OUTDDDD
++ a_3386_3063# a_1172_399# a_6862_399# eight_delay_1/quad_delay_1/OUT6 a_1006_n623#
++ SB S3B VDD OUTDDDDD VSS VSS a_1632_3063# eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ S VDD eight_delay_0/quad_delay_0/OUT5 VDD a_3552_3063# a_4062_399# a_6942_n623#
++ a_2592_3063# a_586_2041# eight_delay_0/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_5982_n623# a_2926_399# OUTDDDDD SB eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ S3 a_126_399# eight_delay_1/quad_delay_1/unit_delay_0/OUTD eight_delay_1/quad_delay_0/OUT0
++ a_2132_n623# eight_delay_0/OUTDDDD a_1172_n623# eight_delay_1/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_0/OUT
++ VDD a_3092_n623# S5 VSS VSS VDD eight_delay_1/quad_delay_0/OUT2 a_506_3063# a_1966_399#
++ eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/OUT3
++ a_3092_399# VSS SB a_4522_3063# a_7402_3063# a_6942_399# a_6442_3063# VSS a_46_n623#
++ a_5482_3063# a_5402_2041# VDD a_7322_2041# a_4442_2041# a_3006_399# a_6362_2041#
++ eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# a_5022_n623# a_2506_3063#
++ a_4062_n623# a_672_3063# a_5982_399# a_1546_3063# a_5108_399# eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ a_3466_3063# VDD a_2426_2041# S5 S3 a_4608_3063# a_212_n623# eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ a_1466_2041# a_2046_399# a_6528_3063# a_3386_2041# a_3006_n623# eight_delay_1/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A
++ VSS a_5568_3063# a_2046_n623# a_7488_3063# a_1086_n623# eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ VDD eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# a_4148_399#
++ eight_delay_1/quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A VDD S5B VSS
++ VDD OUTDDDDD VSS eight_delay_0/quad_delay_1/OUT2 a_5108_n623# S4B a_1632_2041# a_7028_n623#
++ a_4148_n623# eight_delay_1/quad_delay_1/unit_delay_2/OUTD VDD VDD VSS a_6068_n623#
++ a_3552_2041# eight_delay_0/quad_delay_1/OUT3 S2 a_2592_2041# a_1086_399# S3B eight_delay_0/quad_delay_1/OUT4
++ eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# a_212_399# eight_delay_0/quad_delay_1/OUT5
++ VDD VSS a_7028_399# S2B
+Xeight_delay_0 VSS VDD S SB eight_delay_0/OUT7 S2B S2 S3B S3 S4B S4 S2B S2 S3 eight_delay_0/OUTD
++ eight_delay_0/IN eight_delay_0/OUT eight_delay_0/OUTDDDDD eight_delay_0/OUTDD eight_delay_0/OUTDDD
++ eight_delay_0/OUTDDDD S3 eight_delay_0/OUT SB a_1632_2041# VSS VDD a_1632_3063#
++ VDD a_2592_3063# eight_delay_0/quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ S2 VSS eight_delay_0/OUT a_672_3063# a_3552_3063# a_7402_3063# eight_delay_0/quad_delay_0/unit_delay_0/OUT
++ VDD VSS eight_delay_0/OUTD a_1466_2041# eight_delay_0/OUTDD eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ VSS S3 VDD VSS VSS S4 a_2592_2041# S eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VSS VDD VDD eight_delay_0/quad_delay_1/OUTDDDD eight_delay_0/quad_delay_0/OUTD a_7488_2041#
++ a_4608_3063# a_5568_3063# eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ eight_delay_0/quad_delay_0/OUTDDD VSS VSS a_6528_2041# eight_delay_0/quad_delay_1/unit_delay_0/OUTD
++ eight_delay_0/quad_delay_0/unit_delay_2/OUTD S4 VSS VDD S2B eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ eight_delay_0/quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A a_3552_2041# eight_delay_0/quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A
++ a_5402_2041# eight_delay_0/OUTDD VSS eight_delay_0/quad_delay_0/OUT6 eight_delay_0/quad_delay_1/OUT0
++ eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# VSS VDD eight_delay_0/OUTD
++ eight_delay_0/quad_delay_0/OUT5 VSS VSS S eight_delay_0/IN S2B VSS VDD a_2506_2041#
++ S3B eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_1/OUT2
++ eight_delay_0/OUTDDD SB VDD SB a_6362_2041# S2B eight_delay_0/OUTDD eight_delay_0/quad_delay_1/OUT0
++ eight_delay_0/OUTDDD a_672_2041# eight_delay_0/quad_delay_1/OUT3 VDD eight_delay_0/quad_delay_0/OUTDDD
++ VSS eight_delay_0/quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ eight_delay_0/quad_delay_0/OUTDD VSS VSS VSS S eight_delay_0/quad_delay_1/OUT4 a_6528_3063#
++ eight_delay_0/quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A eight_delay_0/quad_delay_0/OUTDDDD
++ S2 eight_delay_0/quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A eight_delay_0/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ VDD eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_1/OUT5
++ VSS VDD S3 VSS eight_delay_0/quad_delay_1/OUT3 VSS VDD S2 a_3466_2041# eight_delay_0/quad_delay_1/OUT6
++ a_586_3063# eight_delay_0/IN S2 eight_delay_0/quad_delay_0/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ a_1546_3063# a_4608_2041# S VSS SB S eight_delay_0/quad_delay_0/OUT0 a_7402_2041#
++ SB S3 eight_delay_0/quad_delay_0/unit_delay_1/OUTD VSS a_5402_3063# VSS eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260#
++ a_6362_3063# VDD S2B S2 VDD eight_delay_0/OUTDDD VDD a_4442_3063# VDD eight_delay_0/OUT
++ eight_delay_0/OUTDDDDD S2B VSS eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ eight_delay_0/OUTDDD eight_delay_0/OUTDDDDD VDD eight_delay_0/quad_delay_1/unit_delay_2/OUTD
++ VSS a_5568_2041# eight_delay_0/quad_delay_0/OUT0 eight_delay_0/OUTD a_4442_2041#
++ VSS a_586_2041# S4B eight_delay_0/quad_delay_0/OUT VSS eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ a_7488_3063# S3B eight_delay_0/quad_delay_0/OUT2 S2B VSS VDD eight_delay_0/quad_delay_0/OUT3
++ VSS a_4522_2041# eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ SB VSS eight_delay_0/quad_delay_0/OUT4 VSS a_2506_3063# a_3466_3063# a_1546_2041#
++ a_2426_2041# eight_delay_0/quad_delay_0/OUT5 eight_delay_0/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ eight_delay_0/quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A eight_delay_0/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ S VSS VSS eight_delay_0/quad_delay_0/OUT6 eight_delay_0/quad_delay_0/OUTDDDD VDD
++ VDD VSS VDD S2B VDD a_7322_3063# eight_delay_0/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_5482_2041# VSS VSS VSS a_4522_3063# S4B VSS VSS SB eight_delay_0/quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ eight_delay_0/IN a_5482_3063# eight_delay_0/quad_delay_0/unit_delay_0/OUTD eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ a_6442_3063# eight_delay_0/OUTD S2 a_3386_2041# VDD eight_delay_0/OUTDDDD SB VSS
++ eight_delay_0/IN VDD VDD eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ VDD VSS a_2426_3063# S3B VSS a_506_3063# a_3386_3063# eight_delay_0/quad_delay_1/unit_delay_1/OUTD
++ a_1466_3063# eight_delay_0/quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A eight_delay_0/OUTDDDD
++ a_6442_2041# S2 eight_delay_0/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VSS eight_delay_0/OUTDDDDD S S a_7322_2041# VDD eight_delay_0/OUTDDDD eight_delay_0/quad_delay_1/OUT2
++ VDD eight_delay_0/quad_delay_1/OUTDDDD a_506_2041# VSS eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ VSS eight_delay
+Xeight_delay_1 VSS VDD S SB eight_delay_1/OUT7 S2B S2 S3B S3 S4B S4 S5B S5 S3 OUTD
++ IN OUT OUTDDDDD OUTDD OUTDDD OUTDDDD S3 OUT SB a_5902_399# VSS VDD a_5902_n623#
++ VDD a_4942_n623# eight_delay_1/quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ S2 VSS OUT a_6862_n623# a_3982_n623# a_126_n623# eight_delay_0/IN VDD VSS OUTD a_6068_399#
++ OUTDD eight_delay_1/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# VSS S3 VDD
++ VSS VSS S4 a_4942_399# S eight_delay_1/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VSS VDD VDD eight_delay_1/quad_delay_1/OUTDDDD eight_delay_1/quad_delay_0/OUTD a_46_399#
++ a_2926_n623# a_1966_n623# eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ eight_delay_1/quad_delay_0/OUTDDD VSS VSS a_1006_399# eight_delay_1/quad_delay_1/unit_delay_0/OUTD
++ eight_delay_1/quad_delay_0/unit_delay_2/OUTD S4 VSS VDD S2B eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ eight_delay_1/quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A a_3982_399# eight_delay_1/quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A
++ a_2132_399# OUTDD VSS eight_delay_1/quad_delay_0/OUT6 eight_delay_1/quad_delay_1/OUT0
++ eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# VSS VDD OUTD eight_delay_1/quad_delay_0/OUT5
++ VSS VSS S IN S5B VSS VDD a_5022_399# S3B eight_delay_1/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260#
++ eight_delay_1/quad_delay_1/OUT2 OUTDDD SB VDD SB a_1172_399# S2B OUTDD eight_delay_1/quad_delay_1/OUT0
++ OUTDDD a_6862_399# eight_delay_1/quad_delay_1/OUT3 VDD eight_delay_1/quad_delay_0/OUTDDD
++ VSS eight_delay_1/quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ eight_delay_1/quad_delay_0/OUTDD VSS VSS VSS S eight_delay_1/quad_delay_1/OUT4 a_1006_n623#
++ eight_delay_1/quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A eight_delay_1/quad_delay_0/OUTDDDD
++ S2 eight_delay_1/quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A eight_delay_1/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ VDD eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_1/OUT5
++ VSS VDD S3 VSS eight_delay_1/quad_delay_1/OUT3 VSS VDD S2 a_4062_399# eight_delay_1/quad_delay_1/OUT6
++ a_6942_n623# IN S5 eight_delay_1/quad_delay_0/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ a_5982_n623# a_2926_399# S VSS SB S eight_delay_1/quad_delay_0/OUT0 a_126_399# SB
++ S3 eight_delay_1/quad_delay_0/unit_delay_1/OUTD VSS a_2132_n623# VSS eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260#
++ a_1172_n623# VDD S2B S2 VDD OUTDDD OUTDDDD a_3092_n623# eight_delay_0/OUTDDDD OUT
++ OUTDDDDD S5B VSS eight_delay_1/quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ OUTDDD OUTDDDDD VDD eight_delay_1/quad_delay_1/unit_delay_2/OUTD VSS a_1966_399#
++ eight_delay_1/quad_delay_0/OUT0 OUTD a_3092_399# VSS a_6942_399# S4B eight_delay_1/quad_delay_0/OUT
++ VSS eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# a_46_n623#
++ S3B eight_delay_1/quad_delay_0/OUT2 S2B VSS VDD eight_delay_1/quad_delay_0/OUT3
++ VSS a_3006_399# eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ SB VSS eight_delay_1/quad_delay_0/OUT4 VSS a_5022_n623# a_4062_n623# a_5982_399#
++ a_5108_399# eight_delay_1/quad_delay_0/OUT5 eight_delay_1/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ eight_delay_1/quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A eight_delay_1/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ S VSS VSS eight_delay_1/quad_delay_0/OUT6 eight_delay_1/quad_delay_0/OUTDDDD VDD
++ VDD VSS VDD S2B eight_delay_0/OUTDDDD a_212_n623# eight_delay_1/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_2046_399# VSS VSS VSS a_3006_n623# S4B VSS VSS SB eight_delay_1/quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ IN a_2046_n623# eight_delay_1/quad_delay_0/unit_delay_0/OUTD eight_delay_1/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ a_1086_n623# OUTD S2 a_4148_399# VDD OUTDDDD SB VSS IN VDD VDD eight_delay_1/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ VDD VSS a_5108_n623# S3B VSS a_7028_n623# a_4148_n623# eight_delay_1/quad_delay_1/unit_delay_1/OUTD
++ a_6068_n623# eight_delay_1/quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A OUTDDDD a_1086_399#
++ S5 eight_delay_1/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ VSS OUTDDDDD S S a_212_399# VDD OUTDDDD eight_delay_1/quad_delay_1/OUT2 VDD eight_delay_1/quad_delay_1/OUTDDDD
++ a_7028_399# VSS eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ VSS eight_delay
+C0 S4B S4 1.60fF
+C1 S4 S 0.25fF
+C2 OUTDDDDD OUTDDDD 0.06fF
+C3 eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/OUT0 0.00fF
+C4 eight_delay_0/quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A eight_delay_0/OUTDDDD -0.05fF
+C5 S4 eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.07fF
+C6 SB eight_delay_0/OUTDDDD 0.11fF
+C7 S3 eight_delay_1/quad_delay_0/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A 0.04fF
+C8 eight_delay_1/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/OUT 0.00fF
+C9 eight_delay_0/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A S2 0.04fF
+C10 eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.02fF
+C11 OUTDDDD a_1172_n623# 0.02fF
+C12 S3 eight_delay_1/quad_delay_0/OUT4 0.08fF
+C13 S3 eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.07fF
+C14 OUTDDDD eight_delay_1/quad_delay_1/unit_delay_0/OUTD 0.02fF
+C15 S3B VDD 0.45fF
+C16 SB eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.19fF
+C17 eight_delay_1/quad_delay_1/OUT5 eight_delay_0/quad_delay_0/OUT2 0.01fF
+C18 eight_delay_0/quad_delay_0/OUTDDD eight_delay_0/OUTDDDD 0.99fF
+C19 eight_delay_0/quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A S3 0.02fF
+C20 eight_delay_0/quad_delay_0/OUT0 S4 0.08fF
+C21 SB S3 0.10fF
+C22 eight_delay_1/quad_delay_1/OUT4 eight_delay_0/quad_delay_0/OUT3 0.01fF
+C23 OUTDDDD eight_delay_1/quad_delay_1/emux_0/scs8hs_inv_1_mod_0/A 0.04fF
+C24 eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_0/OUTDDDD 0.13fF
+C25 OUTDDDD eight_delay_1/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A 0.01fF
+C26 SB S2B 0.48fF
+C27 eight_delay_0/quad_delay_1/OUT4 eight_delay_1/quad_delay_0/OUT3 0.01fF
+C28 eight_delay_1/quad_delay_1/OUT3 eight_delay_0/quad_delay_0/OUT4 0.01fF
+C29 eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_1/OUT5 0.00fF
+C30 S eight_delay_0/OUTDDDD 0.11fF
+C31 eight_delay_1/quad_delay_0/OUT4 eight_delay_0/quad_delay_1/OUT3 0.01fF
+C32 OUTDDDD S3B 0.11fF
+C33 eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.02fF
+C34 eight_delay_1/quad_delay_0/unit_delay_0/OUTD S2 0.04fF
+C35 eight_delay_1/quad_delay_1/OUT2 eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.00fF
+C36 S eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.13fF
+C37 eight_delay_0/IN VDD 0.01fF
+C38 eight_delay_1/quad_delay_0/OUT6 eight_delay_0/OUT 0.01fF
+C39 S3 eight_delay_0/quad_delay_1/OUTDDDD 0.02fF
+C40 S4 eight_delay_1/quad_delay_1/OUT6 0.01fF
+C41 eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/OUT5 0.00fF
+C42 VDD S2 0.38fF
+C43 S S3 0.20fF
+C44 VDD a_7488_3063# 0.00fF
+C45 eight_delay_1/quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# 0.02fF
+C46 OUTDDDD a_2046_n623# 0.02fF
+C47 S S2B 0.68fF
+C48 OUTDDDD OUTD 0.02fF
+C49 S4 eight_delay_0/OUTDDDD 0.03fF
+C50 OUTDDDD VDD 0.43fF
+C51 eight_delay_1/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A S2B 0.15fF
+C52 S3 eight_delay_0/OUTDD 0.08fF
+C53 S2B eight_delay_0/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A 0.03fF
+C54 eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.02fF
+C55 eight_delay_1/quad_delay_0/OUT2 eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.00fF
+C56 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/OUT6 0.00fF
+C57 eight_delay_0/IN eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.08fF
+C58 eight_delay_1/quad_delay_1/OUT0 eight_delay_0/quad_delay_0/unit_delay_0/OUT 0.01fF
+C59 a_46_399# eight_delay_0/OUTDDDD 0.09fF
+C60 OUTDDDD S2 0.03fF
+C61 eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# eight_delay_1/OUT7 0.00fF
+C62 eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# S2 0.19fF
+C63 S4 S3 0.18fF
+C64 eight_delay_1/quad_delay_1/OUT0 eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.00fF
+C65 a_3092_n623# OUTDDDD 0.02fF
+C66 VDD eight_delay_0/OUTDDDDD 0.00fF
+C67 eight_delay_0/OUTDDDD eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.24fF
+C68 a_2926_n623# OUTDDDD 0.02fF
+C69 S2B eight_delay_1/quad_delay_0/OUT6 0.17fF
+C70 S4 S2B 0.13fF
+C71 a_46_n623# eight_delay_0/OUTDDDD 0.04fF
+C72 eight_delay_0/OUTDDDD eight_delay_0/quad_delay_0/OUTDD 0.09fF
+C73 OUTDDDD eight_delay_1/quad_delay_1/unit_delay_1/OUTD 0.02fF
+C74 a_586_3063# eight_delay_0/OUTDDDD 0.02fF
+C75 IN eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.00fF
+C76 eight_delay_1/quad_delay_1/OUT2 eight_delay_0/quad_delay_0/OUT5 0.01fF
+C77 eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# eight_delay_0/OUT 0.00fF
+C78 eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_1/OUT0 0.00fF
+C79 S3 a_5402_3063# 0.01fF
+C80 a_2132_n623# OUTDDDD 0.02fF
+C81 S4 eight_delay_1/quad_delay_0/OUTDDD 0.00fF
+C82 eight_delay_1/quad_delay_0/OUT2 eight_delay_0/quad_delay_1/OUT5 0.01fF
+C83 SB S3B 0.21fF
+C84 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_0/OUT5 0.00fF
+C85 eight_delay_0/OUTDDDD eight_delay_0/quad_delay_0/OUTDDDD 0.09fF
+C86 eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_0/OUT6 0.00fF
+C87 IN eight_delay_0/OUTDDDD 0.10fF
+C88 eight_delay_1/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_1/OUT6 0.00fF
+C89 S2B a_7322_2041# 0.05fF
+C90 eight_delay_0/quad_delay_0/unit_delay_0/OUTD eight_delay_0/OUTDDDD 0.02fF
+C91 a_1546_3063# eight_delay_0/OUTDDDD 0.02fF
+C92 OUTDDDD eight_delay_1/quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A 0.04fF
+C93 eight_delay_1/quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A OUTDDDD 0.04fF
+C94 S3 eight_delay_0/OUTDDDD 0.39fF
+C95 eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.02fF
+C96 eight_delay_0/quad_delay_0/OUT eight_delay_1/quad_delay_1/OUT6 0.01fF
+C97 SB VDD 0.40fF
+C98 a_1632_3063# eight_delay_0/OUTDDDD 0.02fF
+C99 S2B eight_delay_1/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.03fF
+C100 eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.02fF
+C101 eight_delay_0/quad_delay_1/OUT0 S2B 0.28fF
+C102 eight_delay_0/OUT7 eight_delay_1/quad_delay_0/OUT0 0.01fF
+C103 eight_delay_0/OUTDDDD S2B 0.11fF
+C104 S S3B 0.16fF
+C105 eight_delay_1/quad_delay_1/OUT4 eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.00fF
+C106 SB eight_delay_0/IN 0.16fF
+C107 eight_delay_0/quad_delay_1/OUT2 eight_delay_1/quad_delay_0/OUT5 0.01fF
+C108 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# S2B 0.13fF
+C109 eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_1/OUT2 0.00fF
+C110 eight_delay_0/OUTDDDD a_2426_3063# 0.02fF
+C111 SB S2 0.11fF
+C112 S3B eight_delay_0/OUTDD 0.04fF
+C113 eight_delay_0/quad_delay_1/unit_delay_2/OUTD S3 0.04fF
+C114 eight_delay_0/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A eight_delay_0/OUTDDDD 0.04fF
+C115 eight_delay_1/quad_delay_1/unit_delay_2/OUTD OUTDDDD 0.02fF
+C116 eight_delay_0/quad_delay_0/unit_delay_2/OUTD eight_delay_0/OUTDDDD 0.02fF
+C117 eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/OUT4 0.00fF
+C118 eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# OUT 0.00fF
+C119 S3 S2B 0.09fF
+C120 OUTDDDD eight_delay_1/quad_delay_1/OUTDDDD 0.09fF
+C121 OUT eight_delay_0/quad_delay_0/OUT6 0.01fF
+C122 eight_delay_1/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/OUT3 0.00fF
+C123 SB eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.05fF
+C124 S3 eight_delay_1/quad_delay_0/OUTDDDD 0.04fF
+C125 S VDD 0.49fF
+C126 S4 eight_delay_0/quad_delay_0/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.04fF
+C127 S4 S3B 0.16fF
+C128 S2B eight_delay_1/quad_delay_0/OUTDDDD 0.07fF
+C129 VDD eight_delay_0/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A -0.01fF
+C130 S eight_delay_0/IN 0.30fF
+C131 a_2506_3063# eight_delay_0/OUTDDDD 0.02fF
+C132 OUTDDDD a_3982_n623# 0.02fF
+C133 eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.02fF
+C134 a_506_3063# eight_delay_0/OUTDDDD 0.02fF
+C135 S S2 0.44fF
+C136 eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# S3 0.31fF
+C137 OUTDDDD OUTDDD 0.65fF
+C138 OUTDDDD a_4062_n623# 0.02fF
+C139 eight_delay_1/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A S2 0.10fF
+C140 S4B OUTDDDD 0.03fF
+C141 eight_delay_0/quad_delay_1/emux_2/scs8hs_inv_1_mod_0/A S3 0.14fF
+C142 eight_delay_0/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A S2 0.04fF
+C143 eight_delay_1/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.02fF
+C144 eight_delay_0/quad_delay_1/OUT5 eight_delay_1/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# 0.00fF
+C145 S eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.13fF
+C146 eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# 0.02fF
+C147 S4 VDD 0.73fF
+C148 a_7402_3063# S2 0.00fF
+C149 S4 eight_delay_1/OUT7 0.11fF
+C150 OUTDDDD a_4148_n623# 0.02fF
+C151 eight_delay_0/quad_delay_0/OUT0 eight_delay_1/OUT7 0.01fF
+C152 eight_delay_0/IN eight_delay_1/quad_delay_0/OUT6 0.00fF
+C153 eight_delay_0/quad_delay_0/OUT2 eight_delay_1/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.00fF
+C154 S2 eight_delay_1/quad_delay_0/OUT6 0.20fF
+C155 S4 S2 0.14fF
+C156 eight_delay_1/quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_0/OUT4 0.00fF
+C157 a_3006_n623# OUTDDDD 0.02fF
+C158 eight_delay_0/quad_delay_1/OUT4 eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.00fF
+C159 eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_1/OUT3 0.00fF
+C160 eight_delay_1/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.02fF
+C161 eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.02fF
+C162 eight_delay_0/OUTDDDD S3B 0.11fF
+C163 eight_delay_0/quad_delay_1/OUT6 eight_delay_1/quad_delay_0/OUT 0.01fF
+C164 eight_delay_0/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A S2B 0.04fF
+C165 S4 OUTDDDD 0.04fF
+C166 eight_delay_1/quad_delay_0/OUT3 eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.00fF
+C167 eight_delay_0/quad_delay_0/emux_2/scs8hs_inv_1_mod_0/A eight_delay_0/OUTDDDD 0.04fF
+C168 VDD a_7322_3063# -0.01fF
+C169 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.02fF
+C170 eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# S3B 0.29fF
+C171 eight_delay_0/quad_delay_0/OUT0 eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.00fF
+C172 S3 S3B 0.29fF
+C173 S2 a_7322_3063# 0.00fF
+C174 eight_delay_0/OUTDDDD VDD 0.72fF
+C175 a_2592_3063# eight_delay_0/OUTDDDD 0.02fF
+C176 S3B S2B 0.09fF
+C177 eight_delay_0/OUT7 eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.00fF
+C178 OUTDDDD a_1086_n623# 0.02fF
+C179 eight_delay_0/IN eight_delay_0/quad_delay_1/OUT0 0.01fF
+C180 eight_delay_1/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.02fF
+C181 a_1466_3063# eight_delay_0/OUTDDDD 0.02fF
+C182 S3 a_5482_3063# 0.01fF
+C183 S2 eight_delay_1/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.10fF
+C184 eight_delay_0/quad_delay_1/OUT0 S2 0.10fF
+C185 eight_delay_1/quad_delay_0/unit_delay_0/OUTD S2B 0.04fF
+C186 eight_delay_0/OUTDDDD S2 0.03fF
+C187 eight_delay_1/quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A S4 0.00fF
+C188 eight_delay_1/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.02fF
+C189 eight_delay_1/quad_delay_1/OUT3 eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.00fF
+C190 S3 a_5568_3063# 0.01fF
+C191 SB S 1.37fF
+C192 S3 VDD 0.54fF
+C193 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_0/IN 0.02fF
+C194 eight_delay_0/OUTDDDD a_672_3063# 0.02fF
+C195 S3B eight_delay_0/quad_delay_1/OUT3 0.24fF
+C196 VDD S2B 0.84fF
+C197 S5B eight_delay_0/OUTDDDD 0.02fF
+C198 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# S2 0.05fF
+C199 S4 eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.07fF
+C200 eight_delay_1/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# S3B 0.07fF
+C201 eight_delay_0/quad_delay_0/OUTD eight_delay_0/OUTDDDD 0.02fF
+C202 eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# 0.02fF
+C203 eight_delay_1/quad_delay_0/OUT3 S3B 0.04fF
+C204 eight_delay_0/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.02fF
+C205 a_1006_n623# OUTDDDD 0.02fF
+C206 S4 eight_delay_0/quad_delay_0/emux_3/scs8hs_inv_1_mod_0/A 0.08fF
+C207 S2B S2 2.50fF
+C208 S3B eight_delay_1/quad_delay_0/OUTDD 0.04fF
+C209 OUTDDDD S3 0.33fF
+C210 S4 SB 0.10fF
+C211 S2 eight_delay_1/quad_delay_0/OUTDDDD 0.04fF
+C212 eight_delay_0/quad_delay_0/unit_delay_1/OUTD eight_delay_0/OUTDDDD 0.02fF
+C213 S3 eight_delay_0/quad_delay_1/OUT2 0.22fF
+C214 OUTDDDD S2B -0.06fF
+C215 S2B eight_delay_1/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.05fF
+C216 OUTDDDD a_1966_n623# 0.02fF
+C217 OUTDDDD OUTDD 0.09fF
+C218 eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260# eight_delay_1/quad_delay_0/OUT 0.00fF
+C219 S5 eight_delay_0/OUTDDDD 0.06fF
+C220 eight_delay_0/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A S3 0.13fF
+C221 eight_delay_1/quad_delay_1/OUT6 eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.00fF
+C222 S4 eight_delay_0/quad_delay_0/OUTDDD 0.00fF
+C223 eight_delay_1/quad_delay_0/OUTDDD OUTDDDD 0.32fF
+C224 OUTDDDD eight_delay_1/quad_delay_1/emux_1/scs8hs_inv_1_mod_0/A 0.04fF
+C225 S4 OUTDDD 0.04fF
+C226 S3 eight_delay_1/quad_delay_0/emux_1/scs8hs_inv_1_mod_0/A 0.04fF
+C227 S a_7488_2041# 0.05fF
+C228 OUTDDDDD VSS 0.04fF
+C229 S5 VSS 0.03fF
+C230 S5B VSS 0.03fF
+C231 eight_delay_0/OUTDDDD VSS 0.66fF
+C232 S3B VSS -0.56fF
+C233 OUTDD VSS -0.27fF
+C234 OUTD VSS 0.04fF
+C235 S VSS -2.29fF
+C236 SB VSS 0.92fF
+C237 IN VSS -0.09fF
+C238 OUT VSS -0.49fF
+C239 OUTDDDD VSS 0.30fF
+C240 S4 VSS -0.68fF
+C241 S4B VSS -0.27fF
+C242 OUTDDD VSS 0.04fF
+C243 S2 VSS 1.23fF
+C244 S2B VSS 1.18fF
+C245 S3 VSS -1.10fF
+C246 eight_delay_0/IN VSS 0.90fF
+C247 VDD VSS 0.16fF
+.ends
+
+.subckt TOP VSS VDD OUTDDDDD IN S S2 S3 S4 S5
+Xscs8hs_buf_2_0 VDD VSS IN scs8hs_buf_2_0/X VSS VDD sixteen_delay_0/IN scs8hs_buf_2
+Xscs8hs_buf_2_1 VDD VSS S3 scs8hs_buf_2_1/X VSS VDD sixteen_delay_0/S3 scs8hs_buf_2
+Xscs8hs_buf_2_3 VDD VSS S4 scs8hs_buf_2_3/X VSS VDD sixteen_delay_0/S4 scs8hs_buf_2
+Xscs8hs_buf_2_2 VDD VSS S5 scs8hs_buf_2_2/X VSS VDD sixteen_delay_0/S5B scs8hs_buf_2
+Xscs8hs_buf_2_4 VDD VSS S scs8hs_buf_2_4/X VSS VDD sixteen_delay_0/SB scs8hs_buf_2
+Xscs8hs_buf_2_5 VDD VSS S2 scs8hs_buf_2_5/X VSS VDD sixteen_delay_0/S2B scs8hs_buf_2
+Xsixteen_delay_0 VSS VDD scs8hs_buf_2_4/X sixteen_delay_0/SB sixteen_delay_0/S2B scs8hs_buf_2_5/X
++ scs8hs_buf_2_1/X sixteen_delay_0/S3 scs8hs_buf_2_3/X sixteen_delay_0/S4 sixteen_delay_0/S5B
++ scs8hs_buf_2_2/X sixteen_delay_0/S3 sixteen_delay_0/OUTD sixteen_delay_0/IN sixteen_delay_0/OUT
++ OUTDDDDD sixteen_delay_0/OUTDD sixteen_delay_0/OUTDDD sixteen_delay_0/OUTDDDD scs8hs_buf_2_4/X
++ sixteen_delay_0/eight_delay_0/quad_delay_1/OUT6 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260#
++ a_586_3063# a_5902_399# sixteen_delay_0/eight_delay_1/OUT7 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ a_506_2041# sixteen_delay_0/eight_delay_0/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_5902_n623# sixteen_delay_0/eight_delay_0/quad_delay_0/OUTDDDD VDD a_4942_n623#
++ a_7402_2041# a_4522_2041# a_6862_n623# a_3982_n623# a_126_n623# sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUTD
++ a_6068_399# a_6442_2041# VSS a_5482_2041# VDD scs8hs_buf_2_4/X a_4942_399# scs8hs_buf_2_4/X
++ sixteen_delay_0/eight_delay_0/quad_delay_0/OUT0 OUTDDDDD sixteen_delay_0/SB a_46_399#
++ sixteen_delay_0/eight_delay_0/quad_delay_0/OUT a_2926_n623# VDD VSS a_2506_2041#
++ a_1966_n623# sixteen_delay_0/eight_delay_0/quad_delay_0/OUT6 scs8hs_buf_2_2/X a_672_2041#
++ a_1546_2041# sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ sixteen_delay_0/eight_delay_0/quad_delay_0/OUT2 a_1006_399# a_3466_2041# sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_1/OUTD
++ sixteen_delay_0/eight_delay_1/quad_delay_1/OUT0 VSS sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A
++ a_5402_3063# sixteen_delay_0/eight_delay_0/quad_delay_0/OUT3 a_4442_3063# a_7322_3063#
++ a_6362_3063# a_3982_399# a_4608_2041# VDD sixteen_delay_0/eight_delay_0/quad_delay_0/OUT4
++ sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ sixteen_delay_0/S5B a_2132_399# a_6528_2041# sixteen_delay_0/eight_delay_1/quad_delay_1/OUT2
++ VDD VSS a_5568_2041# sixteen_delay_0/eight_delay_0/quad_delay_0/OUT5 a_7488_2041#
++ sixteen_delay_0/S5B sixteen_delay_0/eight_delay_1/quad_delay_1/OUT3 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT6
++ sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ VSS sixteen_delay_0/eight_delay_1/quad_delay_1/OUT4 sixteen_delay_0/eight_delay_0/OUT7
++ a_2426_3063# VDD sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUT a_5022_399#
++ VDD VSS a_1466_3063# sixteen_delay_0/eight_delay_1/quad_delay_1/OUT5 sixteen_delay_0/eight_delay_0/OUTDDDD
++ a_3386_3063# a_1172_399# a_6862_399# sixteen_delay_0/eight_delay_1/quad_delay_1/OUT6
++ a_1006_n623# sixteen_delay_0/SB scs8hs_buf_2_1/X VDD OUTDDDDD VSS VSS a_1632_3063#
++ sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260#
++ scs8hs_buf_2_4/X VDD sixteen_delay_0/eight_delay_0/quad_delay_0/OUT5 VDD a_3552_3063#
++ a_4062_399# a_6942_n623# a_2592_3063# a_586_2041# sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A
++ a_5982_n623# a_2926_399# OUTDDDDD sixteen_delay_0/SB sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260#
++ sixteen_delay_0/S3 a_126_399# sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_0/OUTD
++ sixteen_delay_0/eight_delay_1/quad_delay_0/OUT0 a_2132_n623# sixteen_delay_0/eight_delay_0/OUTDDDD
++ a_1172_n623# sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A
++ sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ sixteen_delay_0/eight_delay_1/quad_delay_0/OUT VDD a_3092_n623# scs8hs_buf_2_2/X
++ VSS VSS VDD sixteen_delay_0/eight_delay_1/quad_delay_0/OUT2 a_506_3063# a_1966_399#
++ sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ sixteen_delay_0/eight_delay_1/quad_delay_0/OUT3 a_3092_399# VSS sixteen_delay_0/SB
++ a_4522_3063# a_7402_3063# a_6942_399# a_6442_3063# VSS a_46_n623# a_5482_3063# a_5402_2041#
++ VDD a_7322_2041# a_4442_2041# a_3006_399# a_6362_2041# sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ a_5022_n623# a_2506_3063# a_4062_n623# a_672_3063# a_5982_399# a_1546_3063# a_5108_399#
++ sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260#
++ a_3466_3063# VDD a_2426_2041# scs8hs_buf_2_2/X sixteen_delay_0/S3 a_4608_3063# a_212_n623#
++ sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260#
++ a_1466_2041# a_2046_399# a_6528_3063# a_3386_2041# a_3006_n623# sixteen_delay_0/eight_delay_1/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A
++ VSS a_5568_3063# a_2046_n623# a_7488_3063# a_1086_n623# sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260#
++ VDD sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260#
++ a_4148_399# sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A
++ VDD sixteen_delay_0/S5B VSS VDD OUTDDDDD VSS sixteen_delay_0/eight_delay_0/quad_delay_1/OUT2
++ a_5108_n623# scs8hs_buf_2_3/X a_1632_2041# a_7028_n623# a_4148_n623# sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_2/OUTD
++ VDD VDD VSS a_6068_n623# a_3552_2041# sixteen_delay_0/eight_delay_0/quad_delay_1/OUT3
++ scs8hs_buf_2_5/X a_2592_2041# a_1086_399# scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_1/OUT4
++ sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260#
++ a_212_399# sixteen_delay_0/eight_delay_0/quad_delay_1/OUT5 VDD VSS a_7028_399# sixteen_delay_0/S2B
++ sixteen_delay
+C0 a_1172_399# scs8hs_buf_2_3/X 0.02fF
+C1 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# sixteen_delay_0/S3 0.28fF
+C2 VDD sixteen_delay_0/S3 4.16fF
+C3 scs8hs_buf_2_3/X a_126_399# 0.02fF
+C4 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A sixteen_delay_0/S4 0.06fF
+C5 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT5 sixteen_delay_0/S4 0.04fF
+C6 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260# scs8hs_buf_2_1/X 0.11fF
+C7 sixteen_delay_0/eight_delay_0/OUTDDDD sixteen_delay_0/S4 0.04fF
+C8 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# scs8hs_buf_2_1/X 0.11fF
+C9 scs8hs_buf_2_4/X sixteen_delay_0/S4 4.15fF
+C10 sixteen_delay_0/S5B scs8hs_buf_2_2/X 0.30fF
+C11 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/quad_delay_0/OUT3 0.01fF
+C12 sixteen_delay_0/SB sixteen_delay_0/S3 0.05fF
+C13 a_3092_399# sixteen_delay_0/S4 0.02fF
+C14 a_1006_399# scs8hs_buf_2_3/X 0.02fF
+C15 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_3/X 0.13fF
+C16 scs8hs_buf_2_1/X scs8hs_buf_2_3/X 0.07fF
+C17 S4 sixteen_delay_0/S5B 0.01fF
+C18 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.12fF
+C19 a_1172_399# sixteen_delay_0/S4 0.02fF
+C20 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT2 scs8hs_buf_2_1/X 0.01fF
+C21 sixteen_delay_0/IN sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.04fF
+C22 sixteen_delay_0/S4 a_126_399# 0.02fF
+C23 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUT 0.08fF
+C24 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/OUT7 0.01fF
+C25 sixteen_delay_0/eight_delay_0/OUTDDDD sixteen_delay_0/S3 0.04fF
+C26 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# scs8hs_buf_2_1/X 0.11fF
+C27 sixteen_delay_0/S5B sixteen_delay_0/S4 0.03fF
+C28 scs8hs_buf_2_2/X scs8hs_buf_2_3/X 0.02fF
+C29 a_212_399# scs8hs_buf_2_3/X 0.02fF
+C30 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.04fF
+C31 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# sixteen_delay_0/S3 0.28fF
+C32 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT2 scs8hs_buf_2_3/X 0.16fF
+C33 a_1006_399# sixteen_delay_0/S4 0.02fF
+C34 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A sixteen_delay_0/S4 0.19fF
+C35 sixteen_delay_0/eight_delay_0/quad_delay_1/OUT5 sixteen_delay_0/S3 0.19fF
+C36 scs8hs_buf_2_1/X sixteen_delay_0/S4 0.07fF
+C37 sixteen_delay_0/eight_delay_1/OUT7 scs8hs_buf_2_3/X 0.10fF
+C38 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT0 scs8hs_buf_2_1/X 0.01fF
+C39 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT scs8hs_buf_2_1/X 0.21fF
+C40 VDD sixteen_delay_0/eight_delay_1/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A 0.02fF
+C41 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.00fF
+C42 sixteen_delay_0/eight_delay_0/quad_delay_0/emux_0/scs8hs_inv_1_mod_0/A sixteen_delay_0/S2B 0.00fF
+C43 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT2 scs8hs_buf_2_1/X 0.21fF
+C44 scs8hs_buf_2_1/X scs8hs_buf_2_0/X 0.02fF
+C45 IN VDD 0.00fF
+C46 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT6 sixteen_delay_0/S3 0.19fF
+C47 S3 S 0.01fF
+C48 scs8hs_buf_2_3/X sixteen_delay_0/S4 4.23fF
+C49 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT0 scs8hs_buf_2_1/X -0.21fF
+C50 a_212_399# sixteen_delay_0/S4 0.02fF
+C51 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT0 scs8hs_buf_2_3/X 0.16fF
+C52 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT2 sixteen_delay_0/S4 0.04fF
+C53 a_2926_399# scs8hs_buf_2_3/X 0.02fF
+C54 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT4 scs8hs_buf_2_1/X 0.21fF
+C55 a_2046_399# scs8hs_buf_2_3/X 0.02fF
+C56 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_0/a_21_260# sixteen_delay_0/S3 0.28fF
+C57 scs8hs_buf_2_1/X sixteen_delay_0/S3 1.09fF
+C58 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/quad_delay_0/OUT2 0.01fF
+C59 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_1/a_21_260# sixteen_delay_0/S3 0.28fF
+C60 VDD sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.06fF
+C61 sixteen_delay_0/S3 scs8hs_buf_2_3/X 0.04fF
+C62 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT0 sixteen_delay_0/S4 0.04fF
+C63 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/OUT7 0.23fF
+C64 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/quad_delay_1/OUT3 0.01fF
+C65 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# sixteen_delay_0/S3 0.32fF
+C66 a_2926_399# sixteen_delay_0/S4 0.02fF
+C67 VDD sixteen_delay_0/IN 0.06fF
+C68 a_2046_399# sixteen_delay_0/S4 0.02fF
+C69 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUT sixteen_delay_0/S3 0.03fF
+C70 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_1/a_21_260# sixteen_delay_0/S3 0.28fF
+C71 scs8hs_buf_2_3/X sixteen_delay_0/eight_delay_0/OUT7 -0.00fF
+C72 VDD sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A 0.02fF
+C73 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT5 scs8hs_buf_2_4/X -0.00fF
+C74 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT3 scs8hs_buf_2_3/X 0.11fF
+C75 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/quad_delay_1/OUT6 0.01fF
+C76 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# 0.11fF
+C77 sixteen_delay_0/S3 sixteen_delay_0/S4 0.04fF
+C78 sixteen_delay_0/eight_delay_1/quad_delay_1/emux_3/scs8hs_inv_1_mod_0/A sixteen_delay_0/S5B 0.01fF
+C79 VDD scs8hs_buf_2_5/X 0.20fF
+C80 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT sixteen_delay_0/S3 0.19fF
+C81 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT4 scs8hs_buf_2_1/X 0.01fF
+C82 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_1/OUT4 0.21fF
+C83 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT2 sixteen_delay_0/S3 0.19fF
+C84 sixteen_delay_0/eight_delay_0/quad_delay_0/OUTDDDD VDD 0.02fF
+C85 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT6 scs8hs_buf_2_3/X 0.16fF
+C86 sixteen_delay_0/IN sixteen_delay_0/eight_delay_0/OUTDDDD -0.00fF
+C87 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT0 sixteen_delay_0/S3 0.11fF
+C88 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_0/OUTD scs8hs_buf_2_3/X -0.29fF
+C89 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT3 sixteen_delay_0/S4 0.04fF
+C90 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT4 scs8hs_buf_2_3/X 0.16fF
+C91 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_2/OUTD scs8hs_buf_2_3/X 0.12fF
+C92 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT4 sixteen_delay_0/S3 0.19fF
+C93 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT5 scs8hs_buf_2_1/X 0.21fF
+C94 S5 VDD 0.00fF
+C95 scs8hs_buf_2_5/X sixteen_delay_0/S2B 0.22fF
+C96 sixteen_delay_0/SB S2 0.01fF
+C97 sixteen_delay_0/eight_delay_0/quad_delay_0/OUTDDDD sixteen_delay_0/S2B 0.01fF
+C98 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT6 sixteen_delay_0/S4 0.04fF
+C99 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_1/OUT3 0.05fF
+C100 a_2132_399# scs8hs_buf_2_3/X 0.02fF
+C101 scs8hs_buf_2_4/X scs8hs_buf_2_5/X 0.02fF
+C102 sixteen_delay_0/SB sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.00fF
+C103 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_0/OUTD sixteen_delay_0/S4 -0.28fF
+C104 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_1/OUT6 0.21fF
+C105 IN S4 0.00fF
+C106 VDD sixteen_delay_0/SB 0.04fF
+C107 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/OUT7 0.23fF
+C108 sixteen_delay_0/OUTD scs8hs_buf_2_3/X 0.08fF
+C109 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT4 sixteen_delay_0/S4 0.04fF
+C110 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.14fF
+C111 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_2/OUTD sixteen_delay_0/S4 0.13fF
+C112 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/OUT3 0.21fF
+C113 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.11fF
+C114 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_3/X 0.13fF
+C115 VDD sixteen_delay_0/S2B 0.03fF
+C116 VDD sixteen_delay_0/eight_delay_0/OUTDDDD 0.03fF
+C117 a_2132_399# sixteen_delay_0/S4 0.02fF
+C118 sixteen_delay_0/S5B scs8hs_buf_2_5/X 0.05fF
+C119 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_1/scs8hs_buf_2_0/a_21_260# 0.28fF
+C120 sixteen_delay_0/IN scs8hs_buf_2_3/X 0.11fF
+C121 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.11fF
+C122 scs8hs_buf_2_4/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/emux_0/scs8hs_inv_1_mod_0/A 0.00fF
+C123 sixteen_delay_0/SB sixteen_delay_0/S2B 0.04fF
+C124 VDD scs8hs_buf_2_4/X 0.15fF
+C125 sixteen_delay_0/OUTD sixteen_delay_0/S4 0.08fF
+C126 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_1/OUTD scs8hs_buf_2_3/X 0.08fF
+C127 IN S3 0.01fF
+C128 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_1/OUT4 0.19fF
+C129 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_3/X 0.13fF
+C130 sixteen_delay_0/SB scs8hs_buf_2_4/X 0.18fF
+C131 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_2/emux_0/scs8hs_inv_1_mod_0/A sixteen_delay_0/S4 0.19fF
+C132 scs8hs_buf_2_3/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# -0.00fF
+C133 IN sixteen_delay_0/S3 0.01fF
+C134 a_1086_399# scs8hs_buf_2_3/X 0.02fF
+C135 S2 S 0.01fF
+C136 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# scs8hs_buf_2_0/X 0.02fF
+C137 scs8hs_buf_2_1/X sixteen_delay_0/OUT 0.01fF
+C138 scs8hs_buf_2_2/X scs8hs_buf_2_5/X 0.14fF
+C139 sixteen_delay_0/IN sixteen_delay_0/S4 0.11fF
+C140 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT5 sixteen_delay_0/S3 0.19fF
+C141 VDD sixteen_delay_0/S5B 0.05fF
+C142 sixteen_delay_0/IN sixteen_delay_0/eight_delay_1/quad_delay_1/OUT0 0.00fF
+C143 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_1/OUTD sixteen_delay_0/S4 0.08fF
+C144 a_46_399# scs8hs_buf_2_3/X 0.02fF
+C145 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/emux_0/scs8hs_inv_1_mod_0/A sixteen_delay_0/S4 0.20fF
+C146 VDD scs8hs_buf_2_1/X 0.02fF
+C147 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_0/a_21_260# scs8hs_buf_2_1/X 0.11fF
+C148 sixteen_delay_0/IN scs8hs_buf_2_0/X 0.01fF
+C149 sixteen_delay_0/OUT scs8hs_buf_2_3/X 0.11fF
+C150 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_1/OUT3 0.19fF
+C151 S3 sixteen_delay_0/IN 0.01fF
+C152 a_1086_399# sixteen_delay_0/S4 0.02fF
+C153 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_1/OUT6 0.19fF
+C154 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_1/scs8hs_buf_2_1/a_21_260# 0.28fF
+C155 VDD scs8hs_buf_2_3/X 4.43fF
+C156 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT3 0.19fF
+C157 sixteen_delay_0/S5B sixteen_delay_0/S2B 0.11fF
+C158 sixteen_delay_0/IN sixteen_delay_0/S3 0.03fF
+C159 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_1/a_21_260# 0.28fF
+C160 VDD scs8hs_buf_2_2/X 0.21fF
+C161 VDD sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# 0.02fF
+C162 a_1966_399# scs8hs_buf_2_3/X 0.02fF
+C163 S sixteen_delay_0/S2B 0.01fF
+C164 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/quad_delay_0/OUT0 0.01fF
+C165 S4 S5 0.01fF
+C166 sixteen_delay_0/eight_delay_0/OUTDDDD sixteen_delay_0/S5B 0.02fF
+C167 a_46_399# sixteen_delay_0/S4 0.02fF
+C168 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT6 scs8hs_buf_2_4/X 0.00fF
+C169 sixteen_delay_0/SB scs8hs_buf_2_3/X 0.72fF
+C170 VDD sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUT 0.01fF
+C171 sixteen_delay_0/OUT sixteen_delay_0/S4 0.04fF
+C172 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_1/OUT2 0.06fF
+C173 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT5 scs8hs_buf_2_1/X 0.01fF
+C174 a_3006_399# scs8hs_buf_2_3/X 0.02fF
+C175 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/OUTDDDD 0.04fF
+C176 sixteen_delay_0/S3 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_3/scs8hs_buf_2_1/a_21_260# 0.14fF
+C177 S5 sixteen_delay_0/S4 0.01fF
+C178 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_2/scs8hs_buf_2_0/a_21_260# 0.02fF
+C179 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_0/scs8hs_buf_2_0/a_21_260# scs8hs_buf_2_1/X 0.11fF
+C180 sixteen_delay_0/eight_delay_0/quad_delay_1/unit_delay_2/scs8hs_buf_2_0/a_21_260# sixteen_delay_0/S3 0.29fF
+C181 VDD sixteen_delay_0/S4 2.07fF
+C182 scs8hs_buf_2_2/X sixteen_delay_0/S2B 0.05fF
+C183 sixteen_delay_0/eight_delay_0/quad_delay_1/OUT5 scs8hs_buf_2_1/X 0.21fF
+C184 VDD sixteen_delay_0/eight_delay_1/quad_delay_1/OUT0 -0.00fF
+C185 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_1/emux_0/scs8hs_inv_1_mod_0/A scs8hs_buf_2_3/X 0.01fF
+C186 sixteen_delay_0/eight_delay_1/quad_delay_1/OUT5 scs8hs_buf_2_3/X 0.11fF
+C187 sixteen_delay_0/eight_delay_0/OUTDDDD scs8hs_buf_2_3/X 0.04fF
+C188 a_1966_399# sixteen_delay_0/S4 0.02fF
+C189 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUTD VDD 0.02fF
+C190 scs8hs_buf_2_4/X scs8hs_buf_2_3/X 1.55fF
+C191 sixteen_delay_0/SB sixteen_delay_0/S4 0.97fF
+C192 sixteen_delay_0/eight_delay_0/OUTDDDD sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_0/a_21_260# -0.00fF
+C193 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/scs8hs_buf_2_1/a_21_260# 0.11fF
+C194 a_3092_399# scs8hs_buf_2_3/X 0.02fF
+C195 scs8hs_buf_2_1/X sixteen_delay_0/eight_delay_1/quad_delay_0/OUT 0.01fF
+C196 a_3006_399# sixteen_delay_0/S4 0.02fF
+C197 sixteen_delay_0/eight_delay_0/quad_delay_0/OUT6 scs8hs_buf_2_1/X 0.21fF
+C198 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUTD sixteen_delay_0/SB 0.01fF
+C199 S3 VDD 0.00fF
+C200 OUTDDDDD VSS -0.04fF
+C201 scs8hs_buf_2_2/X VSS 0.37fF
+C202 sixteen_delay_0/S5B VSS 0.28fF
+C203 sixteen_delay_0/eight_delay_0/OUTDDDD VSS 0.02fF
+C204 scs8hs_buf_2_1/X VSS 5.94fF
+C205 scs8hs_buf_2_4/X VSS -0.57fF
+C206 sixteen_delay_0/SB VSS -0.86fF
+C207 sixteen_delay_0/IN VSS -1.58fF
+C208 sixteen_delay_0/eight_delay_1/quad_delay_1/unit_delay_3/scs8hs_buf_2_1/a_21_260# VSS 0.02fF
+C209 sixteen_delay_0/S4 VSS 1.25fF
+C210 scs8hs_buf_2_3/X VSS -0.05fF
+C211 scs8hs_buf_2_5/X VSS 0.32fF
+C212 sixteen_delay_0/S2B VSS 0.34fF
+C213 sixteen_delay_0/S3 VSS 0.53fF
+C214 VDD VSS 0.11fF
+C215 sixteen_delay_0/eight_delay_0/quad_delay_0/unit_delay_0/OUT VSS 0.01fF
+C216 S2 VSS 0.04fF
+C217 S VSS -0.27fF
+C218 S5 VSS 0.04fF
+C219 S4 VSS -0.38fF
+C220 S3 VSS 0.04fF
+C221 IN VSS -0.36fF
+C222 scs8hs_buf_2_0/X VSS 0.02fF
+.ends
+
