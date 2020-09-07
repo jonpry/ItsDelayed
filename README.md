@@ -3,6 +3,8 @@ SkyWater 130nm digital delay line
 
 32 Tap, ~70ps per tap
 
+![Test Image 4](https://github.com/jonpry/ItsDelayed/blob/master/layout.png?raw=true)
+
 ## Usage
 
 Compiled top-level GDS2 is foo.gds
