@@ -527,12 +527,12 @@ make_bone(top,[-1.5,14.785],-1+.53,"m1",vert=True,ol="li",two_sided=False)
 
 make_rect(top,[-2+.405,12.16],[1.2,.20],"m1")
 make_bone(top,[-2.1,11.32+.085],1.3,"m1",ol="li",two_sided=False)
-make_bone(top,[-1.5,12.16-.3],.4,"m1",vert=True,ol="li",two_sided=False)
+make_bone(top,[-1.5,12.16-.3-.005],.4,"m1",vert=True,ol="li",two_sided=False)
 
 make_bone(top,[-1.3,-1.55+.085],1.4,"m1",ol="li",two_sided=False)
 make_bone(top,[-2.1,-2.015+.08],2.1,"m1",ol="li",two_sided=False)
-make_bone(top,[-1.5,1.46],1.035,"m1",vert=True,ol="li",two_sided=False)
-make_bone(top,[-2.1,1.46],1.375,"m1",vert=True,ol="li",two_sided=False)
+make_bone(top,[-1.5,1.465],1.035,"m1",vert=True,ol="li",two_sided=False)
+make_bone(top,[-2.1,1.465],1.375,"m1",vert=True,ol="li",two_sided=False)
 
 make_bone(top,[-1.5,8.13],1.035,"m1",vert=True,ol="li",two_sided=False)
 make_bone(top,[-2.1,8.13],-1.375+.58,"m1",vert=True,ol="li",two_sided=False)
