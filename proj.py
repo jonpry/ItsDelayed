@@ -69,17 +69,19 @@ def make_bone(cell,org,length,layer,vert=False,ps=.33,ol=None,two_sided=True,con
 gen = db.TextGenerator()
 gen.default_generator()
 
-src = db.Layout()
-src.read("scs8hs.gds")
+#src = db.Layout()
+#src.read("scs8hs.gds")
 
 cells = {}
-for i in src.top_cell().each_inst():
-   i = src.cell(i.cell_index)
-   cells[i.name] = i
+#for i in src.top_cell().each_inst():
+#   i = src.cell(i.cell_index)
+#   cells[i.name] = i
 
 
 scs8hs_fill_4 = layout.create_cell("scs8hs_fill_4")
-scs8hs_fill_4.copy_tree(cells["scs8hs_fill_4"])
+src = db.Layout()
+src.read("scs8hs_fill_4.gds")
+scs8hs_fill_4.copy_tree(src.top_cell())
 
 pfet_small = layout.create_cell("pfet_small")
 src = db.Layout()
@@ -268,19 +270,22 @@ dcell.trans = db.DTrans.new(0,False,0,0) * dcell.trans
 unit_delay.insert(dcell)
 
 
-def make_pins(cell,x=True):
-    make_pin(cell,[3.035,1.21],"li","OUTD")
-
-    make_pin(cell,[-0.13,1.845],"m1","S")
-    make_pin(cell,[-0.145,1.325],"m1","SB")
+def make_pins(cell,x=True,y=True,z=True):
 
     make_pin(cell,[0.155,-.085],"m1","VSS")
     make_pin(cell,[0.155,3.245],"m1","VDD")
 
+    if z:
+       make_pin(cell,[-0.13,1.845],"m1","S")
+       make_pin(cell,[-0.145,1.325],"m1","SB")
+       make_pin(cell,[3.035,1.21],"li","OUTD")
+
     if x:
        make_pin(cell,[-.325,4.91],"li","IN")
        make_pin(cell,[3.035,4.54],"li","OUT")
+    if y:
        make_pin(cell,[0.155,6.575],"m1","VSS")
+
 #       make_pin(cell,[0.07,3.76],"li","TP1")
 #       make_pin(cell,[1.07,3.76],"li","TP2")
 
@@ -289,13 +294,13 @@ make_pins(unit_delay)
 make_pins(quad_delay)
 make_pins(eight_delay)
 make_pins(sixteen_delay)
-make_pins(top)
-make_pins(emux,False)
+make_pins(top,False,z=False)
+make_pins(emux,False,False)
 
 
-make_pin(sixteen_delay,[0.155,9.905],"m1","VDD")
-make_pin(sixteen_delay,[0.155,13.235],"m1","VSS")
-make_pin(sixteen_delay,[0.155,16.565],"m1","VDD")
+make_pin([top,sixteen_delay],[0.155,9.905],"m1","VDD")
+make_pin([top,sixteen_delay],[0.155,13.235],"m1","VSS")
+make_pin([top,sixteen_delay],[0.155,16.565],"m1","VDD")
 
 
 make_rect(quad_delay,[-.96,1.8],[.48*42,.20],"m1")
@@ -397,25 +402,25 @@ make_rect(quad_delay,[1*.48*10 + 6-.16+6.75-.08, .43+.08-1.17-.08], [.33,.33],"m
 make_pin([quad_delay],[-0.145+0*.48,-1.435],"m1","S4B")
 make_pin([quad_delay],[-0.145+0*.48,-2.015],"m1","S4")
 
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[-0.145+10*.48,-1.435],"m1","S2B")
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[-0.145+10*.48,-2.015],"m1","S2")
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[-0.145+20*.48,-1.435],"m1","S3B")
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[-0.145+20*.48,-2.015],"m1","S3")
-make_pin([top,sixteen_delay,eight_delay],[-0.145+41*.48,-1.435],"m1","S4B")
-make_pin([top,sixteen_delay,eight_delay],[-0.145+41*.48,-2.015],"m1","S4")
+make_pin([sixteen_delay,eight_delay,quad_delay],[-0.145+10*.48,-1.435],"m1","S2B")
+make_pin([sixteen_delay,eight_delay,quad_delay],[-0.145+10*.48,-2.015],"m1","S2")
+make_pin([sixteen_delay,eight_delay,quad_delay],[-0.145+20*.48,-1.435],"m1","S3B")
+make_pin([sixteen_delay,eight_delay,quad_delay],[-0.145+20*.48,-2.015],"m1","S3")
+make_pin([sixteen_delay,eight_delay],[-0.145+41*.48,-1.435],"m1","S4B")
+make_pin([sixteen_delay,eight_delay],[-0.145+41*.48,-2.015],"m1","S4")
 
-make_pin([top,sixteen_delay,eight_delay],[-0.145+0*.48,-1.435],"m1","S5B")
-make_pin([top,sixteen_delay,eight_delay],[-0.145+0*.48,-2.015],"m1","S5")
+make_pin([sixteen_delay,eight_delay],[-0.145+0*.48,-1.435],"m1","S5B")
+make_pin([sixteen_delay,eight_delay],[-0.145+0*.48,-2.015],"m1","S5")
 
 make_pin([top,sixteen_delay,eight_delay,quad_delay],[6.875-.48*8,-1.38],"li","OUTDDDDD")
 make_pin([quad_delay],[6.875+.48*22,-1.38],"li","OUTDDDD")
 
 make_pin([top,sixteen_delay,eight_delay,quad_delay],[0.155,-3.415],"m1","VDD")
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[6.875+.48*2,-1.38],"li","OUTDD")
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[6.875+.48*12,-1.38],"li","OUTDDD")
-make_pin([top,sixteen_delay,eight_delay],[6.875+.48*2+.48*31,-1.38],"li","OUTDDDD")
+make_pin([sixteen_delay,eight_delay,quad_delay],[6.875+.48*2,-1.38],"li","OUTDD")
+make_pin([sixteen_delay,eight_delay,quad_delay],[6.875+.48*12,-1.38],"li","OUTDDD")
+make_pin([sixteen_delay,eight_delay],[6.875+.48*2+.48*31,-1.38],"li","OUTDDDD")
 
-make_pin([top,sixteen_delay,eight_delay,quad_delay],[11.12,-2],"m1","TP1")
+make_pin([sixteen_delay,eight_delay,quad_delay],[11.12,-2],"m1","TP1")
 
 
 make_rect(sixteen_delay,[37.83,6.5],[.15,.5],"poly")
@@ -544,6 +549,14 @@ make_bone(top,[-1.3+20.3,2.325],-20.4,"m1",ps=.35,ol="m2",con_layer="m2.con",two
 make_bone(top,[-.8+20.4,2.735],-21.7,"m1",ps=.35,ol="m2",con_layer="m2.con",two_sided=False)
 make_bone(top,[-.8+29.23,7.335],-30.5,"m1",ps=.35,ol="m2",con_layer="m2.con",two_sided=False)
 make_bone(top,[-.8+31.8,9],-32.5,"m1",ps=.35,ol="m2",con_layer="m2.con",two_sided=False)
+
+make_pin(top,[-3.03,5.05],"li","IN")
+make_pin(top,[-3.03,11.72],"li","S")
+make_pin(top,[-3.03,14.74],"li","S2")
+make_pin(top,[-3.03,8.08],"li","S3")
+make_pin(top,[-3.03,1.42],"li","S4")
+make_pin(top,[-3.03,-1.6],"li","S5")
+
 
 #m1
 
